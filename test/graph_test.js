@@ -1,20 +1,17 @@
-with(jqUnit)
+with (jqUnit)
 {
-  test('Graph exists',
-  function()
+  test('Graph exists', function ()
   {
     ok(Graph);
   });
 
-  test('Null get',
-  function()
+  test('Null get', function ()
   {
     var g = new Graph();
     ok(g.get(1, 2) == undefined);
   });
 
-  test('Bad delete',
-  function()
+  test('Bad delete', function ()
   {
     var g = new Graph();
     g.del(1, 2);
@@ -23,16 +20,14 @@ with(jqUnit)
     ok(g.size == 0);
   });
 
-  test('Simple get',
-  function()
+  test('Simple get', function ()
   {
     var g = new Graph();
     ok(g.set(1, 2, 3) == 3);
     ok(g.get(1, 2) == 3);
   });
 
-  test('Set and get',
-  function()
+  test('Set and get', function ()
   {
     var g = new Graph();
     g.set(1, 2, 3);
@@ -44,8 +39,7 @@ with(jqUnit)
     ok(g.size == 1);
   });
 
-  test('Set and delete',
-  function()
+  test('Set and delete', function ()
   {
     var g = new Graph();
     g.set(1, 2, 3);
@@ -58,8 +52,7 @@ with(jqUnit)
     ok(g.size == 0);
   });
 
-  test('Set and reverse set',
-  function()
+  test('Set and reverse set', function ()
   {
     var g = new Graph();
     g.set(1, 2, 3);
@@ -72,8 +65,7 @@ with(jqUnit)
     ok(g.size == 1);
   });
 
-  test('Set and reverse delete',
-  function()
+  test('Set and reverse delete', function ()
   {
     var g = new Graph();
     g.set(1, 2, 3);
@@ -86,8 +78,7 @@ with(jqUnit)
     ok(g.size == 0);
   });
 
-  test('Self edge',
-  function()
+  test('Self edge', function ()
   {
     var g = new Graph();
     g.set(1, 1, 2);
@@ -97,8 +88,7 @@ with(jqUnit)
     ok(g.size == 1);
   });
 
-  test('Copy',
-  function()
+  test('Copy', function ()
   {
     var g = new Graph({pirate: {ninja: 'robot'}});
     ok(g.get('pirate', 'ninja') == 'robot');
@@ -109,8 +99,7 @@ with(jqUnit)
     ok(g.size == 1);
   });
 
-  test('Reverse lookup',
-  function()
+  test('Reverse lookup', function ()
   {
     var g = new Graph();
     g.set(1, 2, 3);
@@ -121,8 +110,7 @@ with(jqUnit)
     ok(g.graph[2][4] == 5);
   });
 
-  test('Multiget',
-  function()
+  test('Multiget', function ()
   {
     var g = new Graph();
     g.set(1, 2);
@@ -134,8 +122,7 @@ with(jqUnit)
     ok(g.size == 3);
   });
 
-  test('Adjacency',
-  function()
+  test('Adjacency', function ()
   {
     var g = new Graph();
     g.set(1, 2);
