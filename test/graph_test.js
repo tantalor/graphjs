@@ -9,8 +9,8 @@ with(jqUnit)
   test('Null get',
   function()
   {
-      var g = new Graph();
-      ok(g.get(1, 2) == undefined);
+    var g = new Graph();
+    ok(g.get(1, 2) == undefined);
   });
 
   test('Bad delete',
