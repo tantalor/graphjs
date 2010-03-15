@@ -100,11 +100,7 @@ with(jqUnit)
   test('Copy',
   function()
   {
-    var g = new Graph({
-        pirate: {
-            ninja: 'robot'
-        }
-    });
+    var g = new Graph({pirate: {ninja: 'robot'}});
     ok(g.get('pirate', 'ninja') == 'robot');
     ok(g.get('ninja', 'pirate') == 'robot');
     ok(g.vertices.length == 2);
