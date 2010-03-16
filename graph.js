@@ -10,9 +10,19 @@
       // copy input graph
       for (var u in graph)
       {
-        for (var v in graph[u])
+        var adj = graph[u];
+        if (adj.constructor === Object)
         {
-          this.set(u, v, graph[u][v]);
+          for (var v in adj)
+          {
+            this.set(u, v, adj[v]);
+          }
+        } else if (adj.constructor === Array)
+        {
+          for (var i = 0; i < adj.length; i++)
+          {
+            this.set(u, adj[i]);
+          }
         }
       }
     }

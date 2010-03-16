@@ -124,7 +124,25 @@ with (jqUnit)
       "Size is 1.");
   });
 
-  test('Copy', function ()
+  test('Simple copy', function ()
+  {
+    var g = new Graph({pirate: ['ninja', 'robot']});
+    console.log(g);
+    ok(g.get('pirate', 'ninja') && g.get('pirate', 'robot'),
+      "All edges exist.");
+    ok(g.vertices.length === 3,
+      "Number of vertices is 3.");
+    ok(g.degree['pirate'] === 2,
+      "Degree of 'pirate' vertex is 2.");
+    ok(g.degree['ninja'] === 1,
+      "Degree of 'ninja' vertex is 1.");
+    ok(g.degree['robot'] === 1,
+      "Degree of 'robot' vertex is 1.");
+    ok(g.size === 2,
+      "Size is 2.");
+  });
+
+  test('Copy with weights', function ()
   {
     var g = new Graph({pirate: {ninja: 'robot'}});
     ok(g.get('pirate', 'ninja') === 'robot',
@@ -140,7 +158,7 @@ with (jqUnit)
     ok(g.size === 1,
       "Size is 1.");
   });
-
+  
   test('Direct lookup', function ()
   {
     var g = new Graph();
