@@ -124,7 +124,7 @@ with (jqUnit)
       "Size is 1.");
   });
 
-  test('Simple copy', function ()
+  test('Simple constructor', function ()
   {
     var g = new Graph({pirate: ['ninja', 'robot']});
     console.log(g);
@@ -142,13 +142,13 @@ with (jqUnit)
       "Size is 2.");
   });
 
-  test('Copy with weights', function ()
+  test('Constructor with weights', function ()
   {
     var g = new Graph({pirate: {ninja: 'robot'}});
     ok(g.get('pirate', 'ninja') === 'robot',
-      "Get in original order is 'robot'.");
+      "Get in original order has weight 'robot'.");
     ok(g.get('ninja', 'pirate') === 'robot',
-      "Get in reversed order is 'robot'.");
+      "Get in reversed order has weight 'robot'.");
     ok(g.vertices.length === 2,
       "Number of vertices is 2.");
     ok(g.degree['pirate'] === 1,
