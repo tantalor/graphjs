@@ -1,9 +1,9 @@
 (function () {
   var Graph = function (graph) {
-    this.graph = {} // {u: {v: edge, ...}, ...}
-    this.degree = {} // {u: degree, ...}
-    this.vertices = []; // [u, v, ...]
-    this.size = 0;
+    this._graph = {} // {u: {v: edge, ...}, ...}
+    this._degree = {} // {u: degree, ...}
+    this._vertices = []; // [u, v, ...]
+    this._size = 0;
     
     if (graph)
     {
@@ -30,18 +30,33 @@
   
   Graph.prototype.copy = function ()
   {
-    return new Graph(this.graph);
+    return new Graph(this._graph);
   }
   
   Graph.prototype.adj = function (u)
   {
-    return this.graph[u];
+    return this._graph[u];
   }
   
   Graph.prototype.get = function (u, v)
   {
-    if (this.graph[u])
-      return this.graph[u][v];
+    if (this._graph[u])
+      return this._graph[u][v];
+  }
+  
+  Graph.prototype.degree = function (u)
+  {
+    return this._degree[u];
+  }
+  
+  Graph.prototype.size = function ()
+  {
+    return this._size;
+  }
+  
+  Graph.prototype.order = function ()
+  {
+    return this._vertices.length;
   }
   
   Graph.prototype.set = function (u, v, edge)
@@ -50,12 +65,12 @@
   	edge = (edge === undefined ? true : edge);
   	
   	// increment/decrement size
-	  if (edge && !(this.graph[u] && this.graph[u][v]))
+	  if (edge && !(this._graph[u] && this._graph[u][v]))
 	  {
-	    this.size++;
-	  } else if (!edge && this.graph[u] && this.graph[u][v])
+	    this._size++;
+	  } else if (!edge && this._graph[u] && this._graph[u][v])
 	  {
-	    this.size--;
+	    this._size--;
 	  }
 	  
   	// set/unset edges and increment/decrement degrees
@@ -73,31 +88,31 @@
   function _set (g, u, v, e)
   {
   	// add to vertex list if the degree is unknown
-  	if (!g.degree[u])
+  	if (!g._degree[u])
   	{
-  	  g.vertices.push(u);
-  		g.degree[u] = 0;
+  	  g._vertices.push(u);
+  		g._degree[u] = 0;
   	}
   	
   	// we are setting an edge
   	if (e)
   	{
   		// we have a *new* edge
-  		if(!g.graph[u] || !g.graph[u][v])
+  		if(!g._graph[u] || !g._graph[u][v])
   		{
-  			g.degree[u]++;
+  			g._degree[u]++;
   		}
   		
   		// add to adjacency list
-  		g.graph[u] = g.graph[u] || {};
-  		g.graph[u][v] = e;
+  		g._graph[u] = g._graph[u] || {};
+  		g._graph[u][v] = e;
   	}
   	// we are deleting an existing edge
-  	else if(g.graph[u] && g.graph[u][v])
+  	else if(g._graph[u] && g._graph[u][v])
   	{
   		// remove from adjacency list
-  		delete g.graph[u][v];
-  		g.degree[u]--;
+  		delete g._graph[u][v];
+  		g._degree[u]--;
   	}
   }
   

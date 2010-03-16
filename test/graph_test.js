@@ -17,11 +17,11 @@ with (jqUnit)
   {
     var g = new Graph();
     g.del(1, 2);
-    ok(g.degree[1] === 0,
+    ok(g.degree(1) === 0,
       "Degree of one vertex is 0.");
-    ok(g.degree[2] === 0,
+    ok(g.degree(2) === 0,
       "Degree of other vertex is 0.");
-    ok(g.size === 0,
+    ok(g.size() === 0,
       "Size is 0.");
   });
 
@@ -42,13 +42,13 @@ with (jqUnit)
       "Get with original order returns weight.");
     ok(g.get(2, 1) === 3,
       "Get with reveresed order returns weight.");
-    ok(g.vertices.length === 2,
+    ok(g.order() === 2,
       "Number of vertices is 2.");
-    ok(g.degree[1] === 1,
+    ok(g.degree(1) === 1,
       "Degree of one vertex is 1.");
-    ok(g.degree[2] === 1,
+    ok(g.degree(2) === 1,
       "Degree of other vertex is 1.");
-    ok(g.size === 1,
+    ok(g.size() === 1,
       "Size is 1.");
   });
 
@@ -63,13 +63,13 @@ with (jqUnit)
       "Deleted edge is undefined.");
     ok(g.get(2, 1) === undefined,
       "Reverse of edge is also undefined.");
-    ok(g.vertices.length === 2,
+    ok(g.order() === 2,
       "Number of vertices is 2.");
-    ok(g.degree[1] === 0,
+    ok(g.degree(1) === 0,
       "Degree of one vertex is 0.");
-    ok(g.degree[2] === 0,
+    ok(g.degree(2) === 0,
       "Degree of other vertex is 0.");
-    ok(g.size === 0,
+    ok(g.size() === 0,
       "Size is 0.");
   });
 
@@ -82,13 +82,13 @@ with (jqUnit)
       "Get with original order returns new weight.");
     ok(g.get(2, 1) === 4,
       "Get with reversed order returns new weight.");
-    ok(g.vertices.length === 2,
+    ok(g.order() === 2,
       "Number of vertices is 2.");
-    ok(g.degree[1] === 1,
+    ok(g.degree(1) === 1,
       "Degree of one vertex is 1.");
-    ok(g.degree[2] === 1,
+    ok(g.degree(2) === 1,
       "Degree of other vertex is 1.");
-    ok(g.size === 1,
+    ok(g.size() === 1,
       "Size is 1.");
   });
 
@@ -103,13 +103,13 @@ with (jqUnit)
       "Deleted edge is undefined.");
     ok(g.get(2, 1) === undefined,
       "Reverse of edge is also undefined.");
-    ok(g.vertices.length === 2,
+    ok(g.order() === 2,
       "Number of vertices is 2.");
-    ok(g.degree[1] === 0,
+    ok(g.degree(1) === 0,
       "Degree of one vertex is 0.");
-    ok(g.degree[2] === 0,
+    ok(g.degree(2) === 0,
       "Degree of other vertex is 0.");
-    ok(g.size === 0,
+    ok(g.size() === 0,
       "Size is 0.");
   });
 
@@ -120,11 +120,11 @@ with (jqUnit)
       "Set self edge returns weight.");
     ok(g.get(1, 1) === 2,
       "Get self edge returns weight.");
-    ok(g.vertices.length === 1,
+    ok(g.order() === 1,
       "Number of vertices is 1.");
-    ok(g.degree[1] === 1,
+    ok(g.degree(1) === 1,
       "Degree of vertex is 1.");
-    ok(g.size === 1,
+    ok(g.size() === 1,
       "Size is 1.");
   });
 
@@ -134,15 +134,15 @@ with (jqUnit)
     console.log(g);
     ok(g.get('pirate', 'ninja') && g.get('pirate', 'robot'),
       "All edges exist.");
-    ok(g.vertices.length === 3,
+    ok(g.order() === 3,
       "Number of vertices is 3.");
-    ok(g.degree['pirate'] === 2,
+    ok(g.degree('pirate') === 2,
       "Degree of 'pirate' vertex is 2.");
-    ok(g.degree['ninja'] === 1,
+    ok(g.degree('ninja') === 1,
       "Degree of 'ninja' vertex is 1.");
-    ok(g.degree['robot'] === 1,
+    ok(g.degree('robot') === 1,
       "Degree of 'robot' vertex is 1.");
-    ok(g.size === 2,
+    ok(g.size() === 2,
       "Size is 2.");
   });
 
@@ -153,24 +153,14 @@ with (jqUnit)
       "Get in original order has weight 'robot'.");
     ok(g.get('ninja', 'pirate') === 'robot',
       "Get in reversed order has weight 'robot'.");
-    ok(g.vertices.length === 2,
+    ok(g.order() === 2,
       "Number of vertices is 2.");
-    ok(g.degree['pirate'] === 1,
+    ok(g.degree('pirate') === 1,
       "Degree of 'pirate' vertex is 1.");
-    ok(g.degree['ninja'] === 1,
+    ok(g.degree('ninja') === 1,
       "Degree of 'ninja' vertex is 1.");
-    ok(g.size === 1,
+    ok(g.size() === 1,
       "Size is 1.");
-  });
-  
-  test('Direct lookup', function ()
-  {
-    var g = new Graph();
-    g.set(1, 2, 3);
-    ok(g.graph[1][2] === 3,
-      "Graph member can be read in original order.");
-    ok(g.graph[2][1] === 3,
-      "Graph member can be read in reverse order.");
   });
 
   test('Multiget', function ()
@@ -180,11 +170,11 @@ with (jqUnit)
       "Set all edges.");
     ok(g.get(2, 1) && g.get(3, 2) && g.get(1, 3),
       "All edges exist.");
-    ok(g.degree[1] == 2 && g.degree[2] == 2 && g.degree[3] == 2,
+    ok(g.degree(1) == 2 && g.degree(2) == 2 && g.degree(3) == 2,
       "Degree of all vertices is 2.");
-    ok(g.vertices.length === 3,
+    ok(g.order() === 3,
       "Number of vertices is 3.");
-    ok(g.size === 3,
+    ok(g.size() === 3,
       "Size is 3.");
   });
 
@@ -266,13 +256,13 @@ with (jqUnit)
       "Original graph does not have deleted edge.")
     ok(h.get(2, 3),
       "Copied graph has deleted edge.");
-    ok(g.size == 2,
+    ok(g.size() == 2,
       "Original graph has size 2.");
-    ok(h.size == 3,
+    ok(h.size() == 3,
       "Copied graph has size 3.");
-    ok(g.degree[2] == 1,
+    ok(g.degree(2) == 1,
       "Degree of vertex 1 in original is 1.")
-    ok(h.degree[2] == 2,
+    ok(h.degree(2) == 2,
       "Degree of vertex 1 in copy is 2.")
   });
   
