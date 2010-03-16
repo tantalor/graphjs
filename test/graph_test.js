@@ -197,9 +197,9 @@ with (jqUnit)
   test('Depth-first search', function ()
   {
     var g = new Graph({
-      1: {2: 1, 3: 1},
-      2: {4: 1, 5: 1},
-      3: {6: 1, 7: 1},
+      1: [2, 3],
+      2: [4, 5],
+      3: [6, 7],
     });
     var visited = {};
     function visit (v)
@@ -223,9 +223,9 @@ with (jqUnit)
   test('Breadth-first search', function ()
   {
     var g = new Graph({
-      1: {2: 1, 3: 1},
-      2: {4: 1, 5: 1},
-      3: {6: 1, 7: 1},
+      1: [2, 3],
+      2: [4, 5],
+      3: [6, 7],
     });
     var fringe = [1];
     var visited = {};
