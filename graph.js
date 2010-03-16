@@ -28,6 +28,11 @@
     }
   }
   
+  Graph.prototype.copy = function ()
+  {
+    return new Graph(this.graph);
+  }
+  
   Graph.prototype.adj = function (u)
   {
     return this.graph[u];
@@ -62,7 +67,7 @@
   
   Graph.prototype.del = function (u, v)
   {
-  	this.set(u, v, false); // false is the edge annihilator
+  	return this.set(u, v, false); // false is the edge annihilator
   }
   
   function _set (g, u, v, e)

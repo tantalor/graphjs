@@ -55,8 +55,10 @@ with (jqUnit)
   test('Set and delete', function ()
   {
     var g = new Graph();
-    g.set(1, 2, 3);
-    g.del(1, 2);
+    ok(g.set(1, 2),
+      "Added edge.")
+    ok(g.del(1, 2) === false,
+      "Deleted edge.")
     ok(g.get(1, 2) === undefined,
       "Deleted edge is undefined.");
     ok(g.get(2, 1) === undefined,
@@ -93,8 +95,10 @@ with (jqUnit)
   test('Set and reverse delete', function ()
   {
     var g = new Graph();
-    g.set(1, 2, 3);
-    g.del(2, 1);
+    ok(g.set(1, 2),
+      "Added edge.")
+    ok(g.del(2, 1) === false,
+      "Deleted edge.");
     ok(g.get(1, 2) === undefined,
       "Deleted edge is undefined.");
     ok(g.get(2, 1) === undefined,
@@ -245,5 +249,46 @@ with (jqUnit)
     ok(visited[5], "Visited vertex 5.");
     ok(visited[6], "Visited vertex 6.");
     ok(visited[7], "Visited vertex 7.");
+  });
+  
+  test('Simple copy', function ()
+  {
+    var g = new Graph({
+      1: [2, 3],
+      2: [3],
+    });
+    var h = g.copy();
+    ok(g.get(2, 3),
+      "Original graph has edge.")
+    ok(g.del(2, 3) === false,
+      "Deleted edge in original graph.");
+    ok(g.get(2, 3) === undefined,
+      "Original graph does not have deleted edge.")
+    ok(h.get(2, 3),
+      "Copied graph has deleted edge.");
+    ok(g.size == 2,
+      "Original graph has size 2.");
+    ok(h.size == 3,
+      "Copied graph has size 3.");
+    ok(g.degree[2] == 1,
+      "Degree of vertex 1 in original is 1.")
+    ok(h.degree[2] == 2,
+      "Degree of vertex 1 in copy is 2.")
+  });
+  
+  test('Copy with weights', function ()
+  {
+    var g = new Graph({
+      1: {2: 3},
+    });
+    var h = g.copy();
+    ok(g.get(1, 2) === 3,
+      "Original graph has edge with weight.")
+    ok(g.del(1, 2) === false,
+      "Deleted edge in original graph.");
+    ok(g.get(1, 2) === undefined,
+      "Original graph does not have deleted edge.")
+    ok(h.get(1, 2) == 3,
+      "Copied graph has deleted edge with weight.");
   });
 }
