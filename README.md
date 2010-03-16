@@ -16,5 +16,5 @@ GraphJS is packaged with [jqUnit](http://code.google.com/p/jqunit/) tests. To ru
 
 ### Example
 
-    Tests completed in 29 milliseconds.
-    0 tests of 51 failed.
+    Tests completed in 42 milliseconds.
+    0 tests of 87 failed.
