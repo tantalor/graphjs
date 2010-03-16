@@ -175,4 +175,57 @@ with (jqUnit)
     ok(2 in g.adj(1),
       "Vertex 2 is adjacent to vertex 1.");
   });
+  
+  test('Depth-first search', function ()
+  {
+    var g = new Graph({
+      1: {2: 1, 3: 1},
+      2: {4: 1, 5: 1},
+      3: {6: 1, 7: 1},
+    });
+    var visited = {};
+    function visit (v)
+    {
+      if (visited[v]) return;
+      visited[v] = 1;
+      for (var u in g.adj(v)) {
+        visit(u);
+      };
+    }
+    visit(1);
+    ok(visited[1], "Visited vertex 1.");
+    ok(visited[2], "Visited vertex 2.");
+    ok(visited[3], "Visited vertex 3.");
+    ok(visited[4], "Visited vertex 4.");
+    ok(visited[5], "Visited vertex 5.");
+    ok(visited[6], "Visited vertex 6.");
+    ok(visited[7], "Visited vertex 7.");
+  });
+  
+  test('Breadth-first search', function ()
+  {
+    var g = new Graph({
+      1: {2: 1, 3: 1},
+      2: {4: 1, 5: 1},
+      3: {6: 1, 7: 1},
+    });
+    var fringe = [1];
+    var visited = {};
+    while (fringe.length > 0)
+    {
+      var v = fringe.shift();
+      if (visited[v]) continue;
+      visited[v] = 1;
+      for (var u in g.adj(v)) {
+        fringe.push(u);
+      };
+    }
+    ok(visited[1], "Visited vertex 1.");
+    ok(visited[2], "Visited vertex 2.");
+    ok(visited[3], "Visited vertex 3.");
+    ok(visited[4], "Visited vertex 4.");
+    ok(visited[5], "Visited vertex 5.");
+    ok(visited[6], "Visited vertex 6.");
+    ok(visited[7], "Visited vertex 7.");
+  });
 }
