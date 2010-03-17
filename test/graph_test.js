@@ -344,4 +344,24 @@ with (jqUnit)
     ok(h.grep(function (v) {return h.degree(v) === 4;}).length === h.order(),
       "Degree of all vertices is 4.");
   });
+  
+  test('Perterson graph', function ()
+  {
+    var g = Graph.peterson();
+    
+    ok(g.order() === 10,
+      "Peterson graph has 10 vertices.");    
+    ok(g.size() === 15,
+      "Peterson graph has 15 edges.");
+  })
+  
+  test('Bipartite double cover', function ()
+  {
+    var g = Graph.peterson().bipartite_double_cover();
+    
+    ok(g.order() === 20,
+      "Desargues graph has 20 vertices.")
+    ok(g.size() === 30,
+      "Desargues graph has 30 vertices.")
+  });
 }
