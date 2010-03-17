@@ -225,6 +225,27 @@
     return this.size() === order * (order - 1) / 2;
   }
   
+  Graph.prototype.is_cycle = function ()
+  {
+    if (this.order() !== this.size())
+      return false;
+      
+    var visited = {};
+    var seen = 0;
+    var v = this._vertices[0];
+    
+    while (!(v === undefined || v in visited))
+    {
+      visited[v] = 1;
+      seen++;
+      for (var u in this.adj(v))
+        if (!(u in visited))
+          v = u;
+    }
+    
+    return seen === this.order();
+  }
+  
   Graph.prototype.bipartite_double_cover = function ()
   {
     return this.tensor(Graph.k(2));

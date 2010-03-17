@@ -433,4 +433,16 @@ with (jqUnit)
     ok(new Graph({a: ['b', 'c'], b: ['c']}).is_complete(),
       "K(3) is complete.");
   });
+  
+  test('Cycle testing', function ()
+  {
+    ok(!new Graph({a: ['b'], b: ['c']}).is_cycle(),
+      "Path on a, b, c is not a cycle.");
+    
+    ok(Graph.c(3).is_cycle(),
+      "C(3) is a cycle.");
+    
+    ok(!Graph.c(3, ['a', 'b', 'c']).union(Graph.c(4, ['d', 'e', 'f', 'g'])).is_cycle(),
+      "C(3) union C(4) is not a cycle.")
+  });
 }
