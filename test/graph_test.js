@@ -378,6 +378,20 @@ with (jqUnit)
     }
   });
   
+  test('Union', function ()
+  {
+    var g = new Graph({a: ['b', 'c']});
+    var h = new Graph({b: ['c']});
+    var gh = g.union(h);
+    
+    ok(gh.get('a', 'b') && gh.get('a', 'c') && gh.get('b', 'c'),
+      "All edges exist.");
+    ok(gh.order() === 3,
+      "Order is 3.");
+    ok(gh.size() === 3,
+      "Size is 3.");
+  });
+  
   test('Bipartite testing', function ()
   {
     ok(!Graph.k(3).is_bipartite(),

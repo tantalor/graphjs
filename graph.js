@@ -158,6 +158,21 @@
     return h;
   }
   
+  Graph.prototype.union = function (g)
+  {
+    var h = this.copy();
+    
+    g.each(function (v)
+    {
+      for (var u in g.adj(v))
+      {
+        h.set(v, u, g.get(v, u));
+      }
+    });
+    
+    return h;
+  }
+  
   Graph.prototype.is_bipartite = function ()
   {
     var fringe = [this._vertices[0]];
