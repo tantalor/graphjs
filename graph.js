@@ -140,6 +140,69 @@
     return h;
   }
   
+  Graph.prototype.tensor = function (g)
+  {
+    var h = new Graph();
+    var vertices = this.cross(g);
+    
+    for (var i = 0; i < vertices.length; i++)
+    {
+      for (var j = 0; j < vertices.length; j++)
+      {
+        var u = vertices[i], v = vertices[j];
+        if (this.get(u[0], v[0]) && g.get(u[1], v[1]))
+          h.set(u, v);
+      }
+    }
+    
+    return h;
+  }
+  
+  Graph.prototype.bipartite_double_cover = function ()
+  {
+    return this.tensor(Graph.k(2));
+  }
+  
+  Graph.peterson = function (vertices)
+  {
+    if (vertices === undefined)
+      vertices = [1,2,3,4,5,6,7,8,9,10];
+    
+    var g = new Graph();
+    
+    g.set(vertices[0], vertices[1]);
+    g.set(vertices[1], vertices[2]);
+    g.set(vertices[2], vertices[3]);
+    g.set(vertices[3], vertices[4]);
+    g.set(vertices[4], vertices[0]);
+    
+    g.set(vertices[5], vertices[7]);
+    g.set(vertices[6], vertices[8]);
+    g.set(vertices[7], vertices[9]);
+    g.set(vertices[8], vertices[5]);
+    g.set(vertices[9], vertices[6]);
+    
+    g.set(vertices[0], vertices[5]);
+    g.set(vertices[1], vertices[6]);
+    g.set(vertices[2], vertices[7]);
+    g.set(vertices[3], vertices[8]);
+    g.set(vertices[4], vertices[9]);
+    
+    return g;
+  }
+  
+  Graph.k = function (n, vertices)
+  { 
+    var g = new Graph();
+    
+    for (var i = 0; i < n; i++)
+      for (var j = 0; j < n; j++)
+        if (i != j)
+          g.set(vertices ? vertices[i] : i, vertices ? vertices[j] : j);
+    
+    return g;
+  }
+  
   function _set (g, u, v, e)
   {
   	// add to vertex list if the degree is unknown
