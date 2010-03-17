@@ -280,4 +280,68 @@ with (jqUnit)
     ok(h.get(1, 2) == 3,
       "Copied graph has deleted edge with weight.");
   });
+  
+  test('Cartesian product', function ()
+  {
+    var g = new Graph();
+    g.set(1,1);
+    g.set(2,2);
+    
+    var h = new Graph();
+    h.set(3, 4);
+    h.set(4, 5);
+    h.set(5, 3);
+    
+    var gh = g.cartesian(h);
+    
+    ok(gh.order() === 6,
+      "Order is 6.");
+    ok(gh.size() === 12,
+      "Size is 12.");
+    
+    ok([1, 3] in gh.adj([1, 4]),
+      "(1,3) adjacent to (1,4).");
+    ok([1, 4] in gh.adj([1, 5]),
+      "(1,4) adjacent to (1,5).");
+    ok([1, 5] in gh.adj([1, 3]),
+      "(1,5) adjacent to (1,3).");
+    
+    ok([2, 3] in gh.adj([2, 4]),
+      "(2,3) adjacent to (2,4).");
+    ok([2, 4] in gh.adj([2, 5]),
+      "(2,4) adjacent to (2,5).");
+    ok([2, 5] in gh.adj([2, 3]),
+      "(2,5) adjacent to (2,3).");
+    
+    ok(gh.grep(function (v) {return v in gh.adj(v)}).length === gh.order(),
+      "Every vertex adjacent to self.")
+  });
+  
+  test('Cartesian self product', function ()
+  {
+    var g = new Graph({
+      a: ['b'],
+      b: ['c'],
+      c: ['a'],
+    });
+    
+    var h = g.cartesian(g);
+    
+    ok(h.size() === 18,
+      "Size is 18.");
+    ok(h.order() === 9,
+      "Order is 9.");
+    
+    ok(['a', 'b'] in h.adj(['b', 'b']),
+      "(a,b) is adjacent to (b,b)");
+    ok(['c', 'b'] in h.adj(['b', 'b']),
+      "(c,b) is adjacent to (b,b)");
+    ok(['b', 'a'] in h.adj(['b', 'b']),
+      "(b,a) is adjacent to (b,b)");
+    ok(['b', 'c'] in h.adj(['b', 'b']),
+      "(b,c) is adjacent to (b,b)");
+    
+    ok(h.grep(function (v) {return h.degree(v) === 4;}).length === h.order(),
+      "Degree of all vertices is 4.");
+  });
 }
