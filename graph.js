@@ -59,6 +59,26 @@
     return this._vertices.length;
   }
   
+  Graph.prototype.each = function (f)
+  {
+    for (var i = 0; i < this._vertices.length; i++)
+    {
+      if (f(this._vertices[i], i) === false)
+        break;
+    }
+  }
+  
+  Graph.prototype.grep = function (f)
+  {
+    var vertices = [];
+    this.each(function (v)
+    {
+      if (f(v))
+        vertices.push(v);
+    });
+    return vertices;
+  }
+  
   Graph.prototype.set = function (u, v, edge)
   {
   	// take an undefined edge as simply 'true' for convenience
@@ -83,6 +103,34 @@
   Graph.prototype.del = function (u, v)
   {
   	return this.set(u, v, false); // false is the edge annihilator
+  }
+  
+  Graph.prototype.cartesian = function (g)
+  {
+    var h = new Graph();
+    
+    var vertices = [];
+    for (var i = 0; i < this._vertices.length; i++)
+    {
+      for (var j = 0; j < g._vertices.length; j++)
+      {
+        vertices.push([this._vertices[i], g._vertices[j]]);
+      }
+    }
+    
+    for (var i = 0; i < vertices.length; i++)
+    {
+      for (var j = 0; j < vertices.length; j++)
+      {
+        var u = vertices[i], v = vertices[j];
+        if (u[0] === v[0] && g.get(u[1], v[1]) || this.get(u[0], v[0]) && u[1] === v[1])
+        {
+          h.set(u, v);
+        }
+      }
+    }
+    
+    return h;
   }
   
   function _set (g, u, v, e)
