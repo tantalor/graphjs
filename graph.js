@@ -270,6 +270,20 @@
     return g;
   }
   
+  Graph.c = function (n, vertices)
+  {
+    var g = new Graph();
+    
+    
+    for (var i = 0; i < n; i++)
+    {
+      var j = (i+1) % n;
+      g.set(vertices ? vertices[i] : i, vertices ? vertices[j] : j);
+    }
+    
+    return g;
+  }
+  
   function _set (g, u, v, e)
   {
   	// add to vertex list if the degree is unknown

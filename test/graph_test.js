@@ -367,7 +367,7 @@ with (jqUnit)
   
   test('Complete graphs', function ()
   {
-    for (var n = 2; n < 10; n++)
+    for (var n = 2; n < 5; n++)
     {
       var g = Graph.k(n);
       var size = n*(n-1)/2;
@@ -375,6 +375,20 @@ with (jqUnit)
         "K("+n+") has "+n+" vertices.");
       ok(g.size() === size,
         "K("+n+") has "+size+" edges.");
+    }
+  });
+  
+  test('Cycles', function ()
+  {
+    for (var n = 3; n < 6; n++)
+    {
+      var g = Graph.c(n);
+      ok(g.order() === n,
+        "C("+n+") has "+n+" vertices.");
+      ok(g.size() === n,
+        "C("+n+") has "+n+" edges.");
+      ok(g.grep(function (v) {return (v+1)%n in g.adj(v);}).length === n,
+        "C("+n+") neighbors are adjacent.");
     }
   });
   
