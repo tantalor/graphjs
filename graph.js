@@ -158,6 +158,31 @@
     return h;
   }
   
+  Graph.prototype.is_bipartite = function ()
+  {
+    var fringe = [this._vertices[0]];
+    var color = {};
+    color[fringe[0]] = true;
+    
+    while (fringe.length > 0)
+    {
+      var v = fringe.shift();
+      for (var u in this.adj(v))
+      {
+        if (u in color)
+        {
+          if (color[u] === color[v])
+            return false;
+        } else {
+          color[u] = !color[v];
+          fringe.push(u);
+        }
+      }
+    }
+    
+    return true;
+  }
+  
   Graph.prototype.bipartite_double_cover = function ()
   {
     return this.tensor(Graph.k(2));

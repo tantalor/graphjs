@@ -377,4 +377,13 @@ with (jqUnit)
         "K("+n+") has "+size+" edges.");
     }
   });
+  
+  test('Bipartite testing', function ()
+  {
+    ok(!Graph.k(3).is_bipartite(),
+      "K(3) is not bipartite.")
+    
+    ok(Graph.peterson().bipartite_double_cover().is_bipartite(),
+      "Desargues graph is bipartite.")
+  });
 }
