@@ -63,7 +63,7 @@
   {
     for (var i = 0; i < this._vertices.length; i++)
     {
-      if (f(this._vertices[i], i) === false)
+      if (f.call(this, this._vertices[i], i) === false)
         break;
     }
   }
@@ -71,9 +71,9 @@
   Graph.prototype.grep = function (f)
   {
     var vertices = [];
-    this.each(function (v)
+    this.each(function (v, i)
     {
-      if (f(v))
+      if (f.call(this, v, i))
         vertices.push(v);
     });
     return vertices;
@@ -212,6 +212,17 @@
     }
     
     return true;
+  }
+  
+  Graph.prototype.is_complete = function ()
+  {
+    var order = this.order() - this.grep(
+      function (v) {
+        // remove self edges
+        return v in this.adj(v);
+      }).length;
+    
+    return this.size() === order * (order - 1) / 2;
   }
   
   Graph.prototype.bipartite_double_cover = function ()

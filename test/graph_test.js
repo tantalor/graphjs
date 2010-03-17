@@ -407,4 +407,16 @@ with (jqUnit)
     ok(Graph.peterson().bipartite_double_cover().is_bipartite(),
       "Desargues graph is bipartite.");
   });
+  
+  test('Completeness testing', function ()
+  {
+    ok(!new Graph({a: ['a'], b: ['b']}).is_complete(),
+      "Graph with two loops is not complete.");
+    
+    ok(new Graph().is_complete(),
+      "Null graph is complete.");
+    
+    ok(new Graph({a: ['b', 'c'], b: ['c']}).is_complete(),
+      "K(3) is complete.");
+  });
 }
