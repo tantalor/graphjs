@@ -364,4 +364,17 @@ with (jqUnit)
     ok(g.size() === 30,
       "Desargues graph has 30 vertices.")
   });
+  
+  test('Complete graphs', function ()
+  {
+    for (var n = 2; n < 10; n++)
+    {
+      var g = Graph.k(n);
+      var size = n*(n-1)/2;
+      ok(g.order() === n,
+        "K("+n+") has "+n+" vertices.");
+      ok(g.size() === size,
+        "K("+n+") has "+size+" edges.");
+    }
+  });
 }
