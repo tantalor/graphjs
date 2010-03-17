@@ -13,7 +13,7 @@ Your graphs may have self edges and weighted edges, but not multiedges or direct
     g.set('a', 'b', 3); # creates edge (a, b) with weight 3
     g.get('a', 'b'); # returns 3
     
-    g.set('a', 'b', 3); # changes (a, b) weight to 4
+    g.set('a', 'b', 4); # changes (a, b) weight to 4
     g.get('a', 'b'); # returns 4
     
     g.del('a', 'b'); # removes edge (a, b)
