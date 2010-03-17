@@ -175,13 +175,29 @@
   
   Graph.prototype.is_bipartite = function ()
   {
-    var fringe = [this._vertices[0]];
+    var seen = 0;
+    var fringe = [];
     var color = {};
-    color[fringe[0]] = true;
     
-    while (fringe.length > 0)
+    while (seen < this._vertices.length)
     {
+      // find an un-colored vertex
+      if (fringe.length === 0)
+      {
+        for (var i = 0; i < this._vertices.length; i++)
+        {
+          var v = this._vertices[i];
+          if (!(v in color)) {
+            color[v] = true;
+            fringe.push(v);
+            break;
+          }
+        }
+      }
+      
+      // color neighbors of v
       var v = fringe.shift();
+      seen++;
       for (var u in this.adj(v))
       {
         if (u in color)
