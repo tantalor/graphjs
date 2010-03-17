@@ -131,7 +131,6 @@ with (jqUnit)
   test('Simple constructor', function ()
   {
     var g = new Graph({pirate: ['ninja', 'robot']});
-    console.log(g);
     ok(g.get('pirate', 'ninja') && g.get('pirate', 'robot'),
       "All edges exist.");
     ok(g.order() === 3,
