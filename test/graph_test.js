@@ -394,10 +394,17 @@ with (jqUnit)
   
   test('Bipartite testing', function ()
   {
+    ok(Graph.k(2).is_bipartite(),
+      "K(2) is bipartite.");
+      
     ok(!Graph.k(3).is_bipartite(),
-      "K(3) is not bipartite.")
+      "K(3) is not bipartite.");
+    
+    var k2k3 = Graph.k(2, ['a', 'b']).union(Graph.k(3, ['c', 'd', 'e']));
+    ok(!k2k3.is_bipartite(),
+      "K(2) union K(3) is not bipartite.");
     
     ok(Graph.peterson().bipartite_double_cover().is_bipartite(),
-      "Desargues graph is bipartite.")
+      "Desargues graph is bipartite.");
   });
 }
