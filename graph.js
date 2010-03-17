@@ -105,11 +105,10 @@
   	return this.set(u, v, false); // false is the edge annihilator
   }
   
-  Graph.prototype.cartesian = function (g)
-  {
-    var h = new Graph();
-    
+  Graph.prototype.cross = function (g)
+  {  
     var vertices = [];
+    
     for (var i = 0; i < this._vertices.length; i++)
     {
       for (var j = 0; j < g._vertices.length; j++)
@@ -117,6 +116,14 @@
         vertices.push([this._vertices[i], g._vertices[j]]);
       }
     }
+    
+    return vertices;
+  }
+  
+  Graph.prototype.cartesian = function (g)
+  {
+    var h = new Graph();
+    var vertices = this.cross(g);
     
     for (var i = 0; i < vertices.length; i++)
     {
