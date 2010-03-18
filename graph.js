@@ -57,6 +57,14 @@
     return this._degree[u];
   }
   
+  Graph.prototype.indegree = function (u)
+  {
+    return this.grep(function (v)
+    {
+      return this.has(v, u);
+    }).length;
+  }
+  
   Graph.prototype.size = function ()
   {
     return this._size;
@@ -93,10 +101,10 @@
     edge = (edge === undefined ? true : edge);
     
     // increment/decrement size
-    if (edge !== ANTIEDGE && !this.has(u, v))
+    if (edge !== ANTIEDGE && !this.has(u, v) && !this.has(v, u))
     {
       this._size++;
-    } else if (edge === ANTIEDGE && this.has(u, v))
+    } else if (edge === ANTIEDGE && (this.has(u, v) || this.has(v, u)))
     {
       this._size--;
     }
@@ -104,6 +112,26 @@
     // set/unset edges and increment/decrement degrees
     _set(this, u, v, edge);
     _set(this, v, u, edge);
+    
+    return edge;
+  }
+  
+  Graph.prototype.dir = function (u, v, edge)
+  {
+    // take an undefined edge as simply 'true' for convenience
+    edge = (edge === undefined ? true : edge);
+    
+    // increment/decrement size
+    if (edge !== ANTIEDGE && !(this.has(u, v) || this.has(v, u)))
+    {
+      this._size++;
+    } else if (edge === ANTIEDGE && this.has(u, v) && !this.has(v, u))
+    {
+      this._size--;
+    }
+    
+    // set/unset edge and increment/decrement degree
+    _set(this, u, v, edge);
     
     return edge;
   }
@@ -338,6 +366,12 @@
     {
       g._vertices.push(u);
       g._degree[u] = 0;
+    }
+    
+    if (!(v in g._degree))
+    {
+      g._vertices.push(v);
+      g._degree[v] = 0;
     }
     
     // we are setting an edge

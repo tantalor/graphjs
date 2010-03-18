@@ -500,4 +500,34 @@ with (jqUnit)
     ok(g.size() === 0,
       "Graph has 0 edges.");
   });
+  
+  test('Add directed edges', function ()
+  {
+    var g = new Graph();
+    g.dir(1, 2);
+    
+    ok(g.order() === 2,
+      "Order is 2.");
+    
+    ok(g.size() === 1,
+      "Size is 1.");
+    
+    ok(g.has(1, 2),
+      "1 ~ 2");
+    
+    ok(!g.has(2, 1),
+      "2 !~ 1");
+    
+    ok(g.degree(1) === 1,
+      "Out degrees of 1 is 1.");
+    
+    ok(g.degree(2) === 0,
+      "Out degrees of 2 is 0.");
+    
+    ok(g.indegree(1) === 0,
+      "Out degrees of 1 is 0.");
+    
+    ok(g.indegree(2) === 1,
+      "Out degrees of 2 is 1.");
+  });
 }
