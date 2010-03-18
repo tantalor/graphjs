@@ -1,4 +1,7 @@
 (function () {
+  
+  var ANTIEDGE = false;
+  
   var Graph = function (graph) {
     this._graph = {} // {u: {v: edge, ...}, ...}
     this._degree = {} // {u: degree, ...}
@@ -63,7 +66,7 @@
   {
     for (var i = 0; i < this._vertices.length; i++)
     {
-      if (f.call(this, this._vertices[i], i) === false)
+      if (f.call(this, this._vertices[i], i) === ANTIEDGE)
         break;
     }
   }
@@ -85,10 +88,10 @@
   	edge = (edge === undefined ? true : edge);
   	
   	// increment/decrement size
-	  if (edge !== false && !(this._graph[u] && this._graph[u][v]))
+	  if (edge !== ANTIEDGE && !(u in this._graph && v in this._graph[u]))
 	  {
 	    this._size++;
-	  } else if (edge === false && this._graph[u] && this._graph[u][v])
+	  } else if (edge === ANTIEDGE && u in this._graph && v in this._graph[u])
 	  {
 	    this._size--;
 	  }
@@ -102,7 +105,7 @@
   
   Graph.prototype.del = function (u, v)
   {
-  	return this.set(u, v, false); // false is the edge annihilator
+  	return this.set(u, v, ANTIEDGE);
   }
   
   Graph.prototype.subgraph = function (vertices)
@@ -333,7 +336,7 @@
   	}
   	
   	// we are setting an edge
-  	if (e)
+  	if (e !== ANTIEDGE)
   	{
   		// we have a *new* edge
   		if(!g._graph[u] || !g._graph[u][v])
@@ -346,7 +349,7 @@
   		g._graph[u][v] = e;
   	}
   	// we are deleting an existing edge
-  	else if(g._graph[u] && g._graph[u][v])
+  	else if (u in g._graph && v in g._graph[u])
   	{
   		// remove from adjacency list
   		delete g._graph[u][v];
