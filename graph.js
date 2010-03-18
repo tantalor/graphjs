@@ -326,7 +326,7 @@
   function _set (g, u, v, e)
   {
   	// add to vertex list if the degree is unknown
-  	if (!g._degree[u])
+  	if (!(u in g._degree))
   	{
   	  g._vertices.push(u);
   		g._degree[u] = 0;
