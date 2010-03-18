@@ -561,4 +561,20 @@ with (jqUnit)
     ok(g.indegree(2) === 1,
       "Out degrees of 2 is 1.");
   });
+  
+  test('Double directed edges', function ()
+  {
+    var g = new Graph();
+    g.dir(1, 2);
+    g.dir(2, 1);
+    
+    ok(g.order() === 2,
+      "Order is 2.");
+    
+    ok(g.size() === 1,
+      "Size is 1.");
+    
+    ok(g.has(1, 2) && g.has(2, 1),
+      "1 ~ 2 and 2 ~ 1");
+  });
 }
