@@ -481,4 +481,13 @@ with (jqUnit)
     ok(g.order() === 2,
       "Graph has 2 vertices.");
   });
+  
+  test('Add falsey weight', function ()
+  {
+    var g = new Graph();
+    g.set('a', 'b', 0);
+    
+    ok(g.size() === 1,
+      "Graph has 1 edge.");
+  });
 }
