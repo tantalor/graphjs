@@ -1,8 +1,8 @@
 # GraphJS
 
-**GraphJS** is a simple Javascript library for manipulating undirected [graphs](http://en.wikipedia.org/wiki/Graph_\(mathematics\)).
+**GraphJS** is a simple Javascript library for manipulating directed and undirected [graphs](http://en.wikipedia.org/wiki/Graph_\(mathematics\)).
 
-Your graphs may have self edges and weighted edges, but not multiedges or directed edges.
+Your graphs may have self edges, weighted edges, and directed edges, but not multiedges.
 
 ## Usage
 
@@ -50,6 +50,21 @@ Your graphs may have self edges and weighted edges, but not multiedges or direct
       # v = a, c (in no particular order)
     }
 
+### Creating directed edges
+
+    var g = new Graph();
+    g.dir('a', 'b'); # a ~ b, but b !~ a
+    g.has('a', 'b'); # true
+    g.has('b', 'a'); # false
+
+### Deleting directed edges
+
+    var g = new Graph();
+    g.set('a', 'b'); # a ~ b, and b ~ a
+    g.deldir('b', 'a'); # remove b ~ a
+    g.has('a', 'b'); # true
+    g.has('b', 'a'); # false
+
 ### Copying
 
     var g = new Graph({
@@ -58,6 +73,16 @@ Your graphs may have self edges and weighted edges, but not multiedges or direct
     });
     
     var h = g.copy(); # an independent copy of g
+
+## Directed edges and graph size
+
+You may mix directed and undirected edges in the same graph.
+
+A pair of directed edges (a, b) and (b, a) is always collapsed into an undirected edge. An undirected edge (a, b) may be expanded into a directed edge (a, b) by deleting the directed edge (b, a) with `deldir(b, a)`.
+
+For consistency, the size of a graph is defined to be the number of undirected edges plus the number of directed edges. In other words, two distinct directed edges between two distinct vertices do not count twice for the size.
+
+A directed self edge is indistinguishable from an undirected self edge.
 
 ## Tests
 
