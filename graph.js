@@ -77,7 +77,7 @@
   {
     for (var i = 0; i < this._vertices.length; i++)
     {
-      if (f.call(this, this._vertices[i], i) === ANTIEDGE)
+      if (f.call(this, this._vertices[i], i) === false)
         break;
     }
   }
