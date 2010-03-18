@@ -85,10 +85,10 @@
   	edge = (edge === undefined ? true : edge);
   	
   	// increment/decrement size
-	  if (edge && !(this._graph[u] && this._graph[u][v]))
+	  if (edge !== false && !(this._graph[u] && this._graph[u][v]))
 	  {
 	    this._size++;
-	  } else if (!edge && this._graph[u] && this._graph[u][v])
+	  } else if (edge === false && this._graph[u] && this._graph[u][v])
 	  {
 	    this._size--;
 	  }
