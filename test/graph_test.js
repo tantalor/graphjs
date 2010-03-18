@@ -11,6 +11,8 @@ with (jqUnit)
     var g = new Graph();
     ok(g.get(1, 2) === undefined,
       "Get for unknown edge returns undef.");
+    ok(g.has(1, 2) === false,
+      "Has for unknown edge returns false.");
   });
 
   test('Bad delete', function ()
@@ -59,10 +61,10 @@ with (jqUnit)
       "Added edge.")
     ok(g.del(1, 2) === false,
       "Deleted edge.")
-    ok(g.get(1, 2) === undefined,
-      "Deleted edge is undefined.");
-    ok(g.get(2, 1) === undefined,
-      "Reverse of edge is also undefined.");
+    ok(!g.has(1, 2),
+      "Deleted edge doesn't exist.");
+    ok(!g.has(2, 1),
+      "Reverse of edge also doesn't exist.");
     ok(g.order() === 2,
       "Number of vertices is 2.");
     ok(g.degree(1) === 0,
@@ -99,10 +101,10 @@ with (jqUnit)
       "Added edge.")
     ok(g.del(2, 1) === false,
       "Deleted edge.");
-    ok(g.get(1, 2) === undefined,
-      "Deleted edge is undefined.");
-    ok(g.get(2, 1) === undefined,
-      "Reverse of edge is also undefined.");
+    ok(!g.has(1, 2),
+      "Deleted edge doesn't exist.");
+    ok(!g.has(2, 1),
+      "Reverse of edge also doesn't exist.");
     ok(g.order() === 2,
       "Number of vertices is 2.");
     ok(g.degree(1) === 0,
@@ -251,7 +253,7 @@ with (jqUnit)
       "Original graph has edge.")
     ok(g.del(2, 3) === false,
       "Deleted edge in original graph.");
-    ok(g.get(2, 3) === undefined,
+    ok(!g.has(2, 3),
       "Original graph does not have deleted edge.")
     ok(h.get(2, 3),
       "Copied graph has deleted edge.");
@@ -275,7 +277,7 @@ with (jqUnit)
       "Original graph has edge with weight.")
     ok(g.del(1, 2) === false,
       "Deleted edge in original graph.");
-    ok(g.get(1, 2) === undefined,
+    ok(!g.has(1, 2),
       "Original graph does not have deleted edge.")
     ok(h.get(1, 2) == 3,
       "Copied graph has deleted edge with weight.");
