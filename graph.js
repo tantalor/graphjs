@@ -191,33 +191,38 @@
     var seen = 0;
     var fringe = [];
     var color = {};
+    var vertices = dict(this._vertices);
     
     while (seen < this._vertices.length)
     {
-      // find an un-colored vertex
+      // populate fringe with an uncolored vertex
       if (fringe.length === 0)
       {
-        for (var i = 0; i < this._vertices.length; i++)
+        for (var v in vertices)
         {
-          var v = this._vertices[i];
-          if (!(v in color)) {
-            color[v] = true;
-            fringe.push(v);
-            break;
-          }
+          // move from vertices to fringe
+          color[v] = true;
+          fringe.push(v);
+          break;
         }
       }
       
-      // color neighbors of v
+      // consume v from fringe
       var v = fringe.shift();
+      delete vertices[v];
       seen++;
+      
+      // color neighbors u of v
       for (var u in this.adj(v))
       {
+        // did we already color neighbor u?
         if (u in color)
         {
+          // fails when adjacent vertices have the same color
           if (color[u] === color[v])
             return false;
         } else {
+          // give neighbor u the opposite color of v, add to fringe
           color[u] = !color[v];
           fringe.push(u);
         }
