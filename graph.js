@@ -5,6 +5,7 @@
   var Graph = function (graph) {
     this._graph = {} // {u: {v: edge, ...}, ...}
     this._degree = {} // {u: degree, ...}
+    this._indegree = {} // {u: degree, ...}
     this._vertices = []; // [u, v, ...]
     this._size = 0;
     
@@ -59,10 +60,7 @@
   
   Graph.prototype.indegree = function (u)
   {
-    return this.grep(function (v)
-    {
-      return this.has(v, u);
-    }).length;
+    return this._indegree[u];
   }
   
   Graph.prototype.size = function ()
@@ -382,22 +380,23 @@
     if (!(u in g._degree))
     {
       g._vertices.push(u);
-      g._degree[u] = 0;
+      g._degree[u] = g._indegree[u] = 0;
     }
     
     if (!(v in g._degree))
     {
       g._vertices.push(v);
-      g._degree[v] = 0;
+      g._degree[v] = g._indegree[v] = 0;
     }
     
     // we are setting an edge
     if (e !== ANTIEDGE)
     {
       // we have a *new* edge
-      if(!g._graph[u] || !g._graph[u][v])
+      if (!g.has(u, v))
       {
         g._degree[u]++;
+        g._indegree[v]++;
       }
       
       // add to adjacency list
@@ -410,6 +409,7 @@
       // remove from adjacency list
       delete g._graph[u][v];
       g._degree[u]--;
+      g._indegree[v]--;
     }
   }
   
