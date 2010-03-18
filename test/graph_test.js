@@ -470,4 +470,15 @@ with (jqUnit)
     ok(g.is_complete(),
       "Is K(3).");
   });
+  
+  test('Repeated vertices', function ()
+  {
+    var g = new Graph();
+    g.set('a', 'b');
+    g.del('a', 'b');
+    g.set('a', 'b');
+    
+    ok(g.order() === 2,
+      "Graph has 2 vertices.");
+  });
 }
