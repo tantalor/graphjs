@@ -141,6 +141,11 @@
     return this.set(u, v, ANTIEDGE);
   }
   
+  Graph.prototype.deldir = function (u, v)
+  {
+    return this.dir(u, v, ANTIEDGE);
+  }
+  
   Graph.prototype.subgraph = function (vertices)
   {
     var g = new Graph();
