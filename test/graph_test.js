@@ -445,4 +445,29 @@ with (jqUnit)
     ok(!Graph.c(3, ['a', 'b', 'c']).union(Graph.c(4, ['d', 'e', 'f', 'g'])).is_cycle(),
       "C(3) union C(4) is not a cycle.")
   });
+  
+  test('Subgraph of C(4)', function ()
+  {
+    var g = Graph.c(4, ['a', 'b', 'c', 'd']).subgraph(['a', 'b', 'c']);
+    
+    ok(!g.is_cycle(),
+      "Not a cycle.")
+    
+    ok(g.order() === 3,
+      "Has 3 vertices.");
+    
+    ok(g.size() === 2,
+      "Has 2 edges.");
+  });
+  
+  test('Subgraph of K(4)', function ()
+  {
+    var g = Graph.k(4, ['a', 'b', 'c', 'd']).subgraph(['a', 'b', 'c']);
+    
+    ok(g.order() === 3,
+      "Has 3 vertices.");
+    
+    ok(g.is_complete(),
+      "Is K(3).");
+  });
 }

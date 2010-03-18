@@ -105,6 +105,19 @@
   	return this.set(u, v, false); // false is the edge annihilator
   }
   
+  Graph.prototype.subgraph = function (vertices)
+  {
+    var g = new Graph();
+    
+    vertices = dict(vertices);
+    for (var v in vertices)
+      for (var u in this.adj(v))
+        if (u in vertices)
+          g.set(v, u, this.get(v, u));
+    
+    return g;
+  }
+  
   Graph.prototype.cross = function (g)
   {  
     var vertices = [];
@@ -334,6 +347,22 @@
   		delete g._graph[u][v];
   		g._degree[u]--;
   	}
+  }
+  
+  function dict (seq, val)
+  {
+    if (seq.constructor === Object)
+      return seq;
+    
+    var obj = {};
+    
+    if (val === undefined)
+      val = 1;
+    
+    for (var i = 0; i < seq.length; i++)
+      obj[seq[i]] = val;
+    
+    return obj;
   }
   
   // add to global scope
