@@ -305,6 +305,18 @@
     return seen === this.order();
   }
   
+  Graph.prototype.is_subgraph = function (g)
+  {
+    return this.grep(function (v)
+    {
+      for (var u in this.adj(v))
+        if (!g.has(v, u))
+          return false;
+        
+      return true;
+    }).length === this.order();
+  }
+  
   Graph.prototype.bipartite_double_cover = function ()
   {
     return this.tensor(Graph.k(2));

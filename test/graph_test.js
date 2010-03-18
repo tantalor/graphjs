@@ -473,6 +473,15 @@ with (jqUnit)
       "Is K(3).");
   });
   
+  test('Subgraph testing', function ()
+  {
+    ok(Graph.c(4).is_subgraph(Graph.k(4)),
+      "C(4) is subgraph of K(4)");
+    
+    ok(!new Graph({a: ['b', 'c']}).is_subgraph(new Graph({b: ['a', 'c']})),
+      "Subgraph negative.");
+  });
+  
   test('Repeated vertices', function ()
   {
     var g = new Graph();
