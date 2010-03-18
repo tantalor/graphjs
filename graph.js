@@ -89,28 +89,28 @@
   
   Graph.prototype.set = function (u, v, edge)
   {
-  	// take an undefined edge as simply 'true' for convenience
-  	edge = (edge === undefined ? true : edge);
-  	
-  	// increment/decrement size
-	  if (edge !== ANTIEDGE && !this.has(u, v))
-	  {
-	    this._size++;
-	  } else if (edge === ANTIEDGE && this.has(u, v))
-	  {
-	    this._size--;
-	  }
-	  
-  	// set/unset edges and increment/decrement degrees
-  	_set(this, u, v, edge);
-  	_set(this, v, u, edge);
-  	
-  	return edge;
+    // take an undefined edge as simply 'true' for convenience
+    edge = (edge === undefined ? true : edge);
+    
+    // increment/decrement size
+    if (edge !== ANTIEDGE && !this.has(u, v))
+    {
+      this._size++;
+    } else if (edge === ANTIEDGE && this.has(u, v))
+    {
+      this._size--;
+    }
+    
+    // set/unset edges and increment/decrement degrees
+    _set(this, u, v, edge);
+    _set(this, v, u, edge);
+    
+    return edge;
   }
   
   Graph.prototype.del = function (u, v)
   {
-  	return this.set(u, v, ANTIEDGE);
+    return this.set(u, v, ANTIEDGE);
   }
   
   Graph.prototype.subgraph = function (vertices)
@@ -333,33 +333,33 @@
   
   function _set (g, u, v, e)
   {
-  	// add to vertex list if the degree is unknown
-  	if (!(u in g._degree))
-  	{
-  	  g._vertices.push(u);
-  		g._degree[u] = 0;
-  	}
-  	
-  	// we are setting an edge
-  	if (e !== ANTIEDGE)
-  	{
-  		// we have a *new* edge
-  		if(!g._graph[u] || !g._graph[u][v])
-  		{
-  			g._degree[u]++;
-  		}
-  		
-  		// add to adjacency list
-  		g._graph[u] = g._graph[u] || {};
-  		g._graph[u][v] = e;
-  	}
-  	// we are deleting an existing edge
-  	else if (g.has(u, v))
-  	{
-  		// remove from adjacency list
-  		delete g._graph[u][v];
-  		g._degree[u]--;
-  	}
+    // add to vertex list if the degree is unknown
+    if (!(u in g._degree))
+    {
+      g._vertices.push(u);
+      g._degree[u] = 0;
+    }
+    
+    // we are setting an edge
+    if (e !== ANTIEDGE)
+    {
+      // we have a *new* edge
+      if(!g._graph[u] || !g._graph[u][v])
+      {
+        g._degree[u]++;
+      }
+      
+      // add to adjacency list
+      g._graph[u] = g._graph[u] || {};
+      g._graph[u][v] = e;
+    }
+    // we are deleting an existing edge
+    else if (g.has(u, v))
+    {
+      // remove from adjacency list
+      delete g._graph[u][v];
+      g._degree[u]--;
+    }
   }
   
   function dict (seq, val)
