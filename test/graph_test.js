@@ -490,4 +490,14 @@ with (jqUnit)
     ok(g.size() === 1,
       "Graph has 1 edge.");
   });
+  
+  test('Remove falsey weight', function ()
+  {
+    var g = new Graph();
+    g.set('a', 'b', 0);
+    g.del('a', 'b');
+    
+    ok(g.size() === 0,
+      "Graph has 0 edges.");
+  });
 }
