@@ -588,4 +588,21 @@ with (jqUnit)
     ok(g.has(1, 2) && g.has(2, 1),
       "1 ~ 2 and 2 ~ 1");
   });
+  
+  test('Drop vertex', function ()
+  {
+    var g = Graph.k(4, ['a', 'b', 'c', 'd']);
+    ok(!g.drop('z'),
+      "Can't drop a vertex that isn't in the graph.")
+    ok(g.is_complete() && g.order() === 4,
+      "Graph is K(4).");
+    ok(g.drop('a'),
+      "Dropped a vertex.");
+    ok(g.is_complete() && g.order() === 3,
+      "K(4) is now K(3).")
+    ok(g.del('b'),
+      "Dropped another vertex.");
+    ok(g.is_complete() && g.order() === 2,
+      "K(3) is now K(2).")
+  });
 }

@@ -134,8 +134,41 @@
     return edge;
   }
   
+  Graph.prototype.drop = function (v)
+  {
+    if (!(v in this._degree))
+      return false;
+    
+    // remove adjacent edges
+    for (var u in this.adj(v))
+    {
+      this.del(v, u);
+    }
+    
+    // remove from vertex list
+    for (var i = 0; i < this._vertices.length; i++)
+    {
+      if (this._vertices[i] === v)
+      {
+        this._vertices.splice(i, 1);
+        break;
+      }
+    }
+    
+    // remove from degree indexes
+    delete this._degree[v];
+    delete this._indegree[v];
+    
+    return true;
+  }
+  
   Graph.prototype.del = function (u, v)
   {
+    // remove vertex
+    if (v === undefined)
+      return this.drop(u);
+    
+    // remove edge
     return this.set(u, v, ANTIEDGE);
   }
   
