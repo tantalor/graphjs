@@ -96,7 +96,8 @@
   Graph.prototype.set = function (u, v, edge)
   {
     // take an undefined edge as simply 'true' for convenience
-    edge = (edge === undefined ? true : edge);
+    if (edge === undefined)
+      edge = true;
     
     // increment/decrement size
     if (edge !== ANTIEDGE && !this.has(u, v) && !this.has(v, u))
@@ -117,7 +118,8 @@
   Graph.prototype.dir = function (u, v, edge)
   {
     // take an undefined edge as simply 'true' for convenience
-    edge = (edge === undefined ? true : edge);
+    if (edge === undefined)
+      edge = true;
     
     // increment/decrement size
     if (edge !== ANTIEDGE && !(this.has(u, v) || this.has(v, u)))
