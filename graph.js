@@ -108,8 +108,8 @@
     }
     
     // set/unset edges and increment/decrement degrees
-    _set(this, u, v, edge);
-    _set(this, v, u, edge);
+    _set.call(this, u, v, edge);
+    _set.call(this, v, u, edge);
     
     return edge;
   }
@@ -129,7 +129,7 @@
     }
     
     // set/unset edge and increment/decrement degree
-    _set(this, u, v, edge);
+    _set.call(this, u, v, edge);
     
     return edge;
   }
@@ -177,42 +177,42 @@
     return this.dir(u, v, ANTIEDGE);
   }
     
-  function _set (g, u, v, e)
+  function _set (u, v, edge)
   {
     // add to vertex list if the degree is unknown
-    if (!(u in g._degree))
+    if (!(u in this._degree))
     {
-      g._vertices.push(u);
-      g._degree[u] = g._indegree[u] = 0;
+      this._vertices.push(u);
+      this._degree[u] = this._indegree[u] = 0;
     }
     
-    if (!(v in g._degree))
+    if (!(v in this._degree))
     {
-      g._vertices.push(v);
-      g._degree[v] = g._indegree[v] = 0;
+      this._vertices.push(v);
+      this._degree[v] = this._indegree[v] = 0;
     }
     
     // we are setting an edge
-    if (e !== ANTIEDGE)
+    if (edge !== ANTIEDGE)
     {
       // we have a *new* edge
-      if (!g.has(u, v))
+      if (!this.has(u, v))
       {
-        g._degree[u]++;
-        g._indegree[v]++;
+        this._degree[u]++;
+        this._indegree[v]++;
       }
       
       // add to adjacency list
-      g._graph[u] = g._graph[u] || {};
-      g._graph[u][v] = e;
+      this._graph[u] = this._graph[u] || {};
+      this._graph[u][v] = edge;
     }
     // we are deleting an existing edge
-    else if (g.has(u, v))
+    else if (this.has(u, v))
     {
       // remove from adjacency list
-      delete g._graph[u][v];
-      g._degree[u]--;
-      g._indegree[v]--;
+      delete this._graph[u][v];
+      this._degree[u]--;
+      this._indegree[v]--;
     }
   }
     
