@@ -7,6 +7,7 @@
     this._degree = {} // {u: degree, ...}
     this._indegree = {} // {u: degree, ...}
     this._vertices = []; // [u, v, ...]
+    this._vertex = {}; // {u: u, ...}
     this._size = 0;
     
     if (graph)
@@ -30,6 +31,12 @@
         }
       }
     }
+  }
+  
+  Graph.prototype.vertex = function (id)
+  {
+    if (id in this._vertex)
+      return this._vertex[id];
   }
   
   Graph.prototype.copy = function ()
@@ -183,12 +190,14 @@
     if (!(u in g._degree))
     {
       g._vertices.push(u);
+      g._vertex[u] = u;
       g._degree[u] = g._indegree[u] = 0;
     }
     
     if (!(v in g._degree))
     {
       g._vertices.push(v);
+      g._vertex[v] = v;
       g._degree[v] = g._indegree[v] = 0;
     }
     
