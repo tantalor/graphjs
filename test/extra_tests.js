@@ -1,4 +1,4 @@
-with (jqUnit)
+with (QUnit)
 {
   test('Cartesian product', function ()
   {
