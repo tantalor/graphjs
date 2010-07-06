@@ -1,3 +1,39 @@
+if (typeof(require) !== 'undefined')
+{
+  var assert = require("assert");
+  
+  try {
+    var narwhal = require('narwhal');
+  } catch (ex) {
+    // node
+    var sys = require('sys');
+  }
+  
+  if (narwhal) {
+    var QUnit = {
+      test: function (name, fn) {
+        exports['test '+name] = fn;
+      },
+      ok: function (value, name) {
+        assert.ok(value, name);
+      }
+    };
+  } else {
+    // node
+    var QUnit = {
+      test: function (name, fn) {
+        sys.print(" + Running test "+name+"\n");
+        fn();
+      },
+      ok: function (value, name) {
+        assert.ok(value, name);
+      }
+    };
+  }
+  
+  var Graph = require("../lib/graph").Graph;
+}
+
 with (QUnit)
 {
   test('Graph exists', function ()

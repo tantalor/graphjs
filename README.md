@@ -91,8 +91,28 @@ GraphJS is packaged with [QUnit](git://github.com/jquery/qunit.git) tests. To ru
     Tests completed in 88 milliseconds.
     0 tests of 160 failed.
 
-You can also run tests with narwhal.
+### Narwhal
 
-    $ js -m test test/common.js 
-    + Running test/common.js
-    Passes: 38, Fails: 0, Errors: 0
+You can run the individual tests with narwhal.
+
+    $ narwhal -m test test/core.js
+    + Running test/core.js
+    Passes: 24, Fails: 0, Errors: 0
+
+Or all tests.
+
+    $ narwhal test/all.js
+    + Running
+    Passes: 24, Fails: 0, Errors: 0
+    + Running
+    Passes: 14, Fails: 0, Errors: 0
+
+### Node
+
+You can run the individual tests or all tests with node.
+
+    $ node test/core.js
+
+Or all tests.
+
+    $ node test/all.js
