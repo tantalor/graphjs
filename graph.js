@@ -217,7 +217,11 @@
       this._indegree[v]--;
     }
   }
-    
+  
   // add to global scope
-  window.Graph = Graph;
+  if (typeof(window) !== 'undefined') {
+    window.Graph = Graph;
+  } else if (typeof(exports) !== 'undefined') {
+    exports.Graph = Graph;
+  }
 }());
