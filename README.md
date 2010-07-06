@@ -109,7 +109,7 @@ Or all tests.
 
 ### Node
 
-You can run the individual tests or all tests with node.
+You can run the individual tests with node.
 
     $ node test/core.js
 
