@@ -86,7 +86,7 @@ A directed self edge is indistinguishable from an undirected self edge.
 
 ## Tests
 
-GraphJS is packaged with [jqUnit](http://code.google.com/p/jqunit/) tests. To run the tests, load the `graphjs/test/test.html` page in your favorite browser.
+GraphJS is packaged with [QUnit](git://github.com/jquery/qunit.git) tests. To run the tests, load the `graphjs/test/all.html` page in your favorite browser.
 
     Tests completed in 88 milliseconds.
     0 tests of 160 failed.
