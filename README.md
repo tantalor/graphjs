@@ -95,4 +95,4 @@ You can also run tests with narwhal.
 
     $ js -m test test/common.js 
     + Running test/common.js
-    Passes: 37, Fails: 0, Errors: 0
+    Passes: 38, Fails: 0, Errors: 0
