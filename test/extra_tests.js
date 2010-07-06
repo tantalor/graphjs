@@ -1,4 +1,4 @@
-with (jqUnit)
+with (QUnit)
 {
   test('Cartesian product', function ()
   {
@@ -197,5 +197,26 @@ with (jqUnit)
     
     ok(!new Graph({a: ['b', 'c']}).is_subgraph(new Graph({b: ['a', 'c']})),
       "Subgraph negative.");
+  });
+  
+  test('Subgraph vertices', function ()
+  {
+    var a = new Date("1/1/2001");
+    var b = new Date("2/2/2002");
+    
+    var g = new Graph();
+    g.set(a, b);
+    g.each(function (v)
+    {
+      ok(v === a || v === b,
+        "Vertices of graph match.");
+    });
+    
+    var h = g.subgraph([a, b]);
+    h.each(function (v)
+    {
+      ok(v === a || v === b,
+        "Vertices of subgraph match.");
+    });
   });
 }
