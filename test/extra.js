@@ -32,6 +32,31 @@ if (typeof(require) !== 'undefined')
   }
   
   var Graph = require("../lib/graph_extras").Graph;
+} else if (typeof(load) !== 'undefined') {
+  // jsc
+  
+  var AssertionError = function (message)
+  {
+    this.message = message;
+    print(this);
+  }
+  
+  AssertionError.prototype.toString = function ()
+  {
+    return "AssertionError: "+this.message;
+  }
+  
+  var QUnit = {
+    test: function (name, fn) {
+      print(" + Running test "+name);
+      fn();
+    },
+    ok: function (value, name) {
+      if (!value) throw new AssertionError(name);
+    }
+  };
+  
+  var Graph = load("lib/graph_extras.js");
 }
 
 with (QUnit)
