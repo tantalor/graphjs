@@ -138,3 +138,16 @@ You can run the separate tests with `jsc`.
 Or all tests.
 
     $ jsc test/all.js
+
+### RingoJS
+
+_see [RingoJS](http://ringojs.org/)_
+
+You can run the separate tests with `ringo`.
+
+    $ ringo test/core.js
+
+Or all the tests.
+
+    $ ringo test/all.js
+
