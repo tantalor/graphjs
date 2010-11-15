@@ -2,12 +2,17 @@ if (typeof(require) !== 'undefined')
 {
   var assert = require("assert");
   
-  try {
-    var narwhal = require('narwhal');
-  } catch (ex) {
+  if (typeof(print) === 'undefined') {
     // node
     var sys = require('sys');
+    var print = function (s) {
+      sys.print(s+"\n");
+    }
   }
+  
+  try {
+    var narwhal = require('narwhal');
+  } catch (ex) {}
   
   if (narwhal) {
     var QUnit = {
@@ -19,10 +24,10 @@ if (typeof(require) !== 'undefined')
       }
     };
   } else {
-    // node
+    // node, ringo
     var QUnit = {
       test: function (name, fn) {
-        sys.print(" + Running test "+name+"\n");
+        print(" + Running test "+name);
         fn();
       },
       ok: function (value, name) {
@@ -30,7 +35,7 @@ if (typeof(require) !== 'undefined')
       }
     };
   }
-  
+    
   var Graph = require("../lib/graph_extras").Graph;
 } else if (typeof(load) !== 'undefined') {
   // jsc
