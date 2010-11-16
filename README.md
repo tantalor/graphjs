@@ -122,10 +122,16 @@ _see [Node](http://nodejs.org/)_
 You can run the individual tests with `node`.
 
     $ node test/core.js
+    + Running
+    Passes: 24, Fails: 0, Errors: 0
 
 Or all tests.
 
     $ node test/all.js
+    + Running
+    Passes: 24, Fails: 0, Errors: 0
+    + Running
+    Passes: 14, Fails: 0, Errors: 0
 
 ### JavaScriptCore
 
@@ -134,10 +140,16 @@ _see [JavaScriptCore](http://webkit.org/projects/javascript/)_
 You can run the separate tests with `jsc`.
 
     $ jsc test/core.js
+    + Running
+    Passes: 24, Fails: 0, Errors: 0
 
 Or all tests.
 
     $ jsc test/all.js
+    + Running
+    Passes: 24, Fails: 0, Errors: 0
+    + Running
+    Passes: 14, Fails: 0, Errors: 0
 
 ### RingoJS
 
@@ -146,8 +158,13 @@ _see [RingoJS](http://ringojs.org/)_
 You can run the separate tests with `ringo`.
 
     $ ringo test/core.js
+    + Running
+    Passes: 24, Fails: 0, Errors: 0
 
 Or all the tests.
 
     $ ringo test/all.js
-
+    + Running
+    Passes: 24, Fails: 0, Errors: 0
+    + Running
+    Passes: 14, Fails: 0, Errors: 0
