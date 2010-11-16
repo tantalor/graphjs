@@ -9,10 +9,7 @@ if (typeof(require) !== 'undefined') {
   
   
   if (narwhal) {
-    // narwhal
-    
     var tests = {};
-    
     exports.QUnit = {
       test: function (name, fn) {
         tests['test '+name] = fn;
