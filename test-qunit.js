@@ -19,6 +19,7 @@ if (typeof(require) !== 'undefined') {
       for (var test in tests) {
         local_exports[test] = tests[test]
       }
+      tests = {};
     };
   } else {
     // node, ringo
