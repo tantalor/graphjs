@@ -4,7 +4,7 @@ if (typeof(require) !== 'undefined') {
   try {
     var narwhal = require('narwhal');
   } catch (e) {}
-    
+  
   exports.run = function (filename) {
     if (narwhal) {
       require('test').run(require(filename));
