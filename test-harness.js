@@ -11,14 +11,18 @@ if (typeof(require) !== 'undefined') {
     } else {
       require(filename);
     }
+    return exports;
   }
 } else if (typeof(load) !== 'undefined') {
   // jsc
-  var exports = {
-    run: function (filename) {
+  (function () {
+    var exports = {};
+    
+    exports.run = function (filename) {
       load(filename);
-    }
-  };
-  
-  exports;
+      return exports;
+    };
+      
+    return exports;
+  })();
 }

@@ -68,38 +68,38 @@ if (typeof(require) !== 'undefined') {
   }
 } else if (typeof(load) !== 'undefined') {
   // jsc
-  var AssertionError = {};
-  var tests = {};
-  var exports = {
-    test: function (name, fn) {
-      tests['test '+name] = fn;
-    },
-    ok: function (value, name) {
-      if (!value) {
-        print("    FAIL: "+name);
-        throw AssertionError;
-      }
-    },
-    export_tests: function () {
-      print("+ Running");
-      var passes = 0, fails = 0, errors = 0;
-      for (var test in tests) {
-        print("  + Running test "+test);
-        try {
-          tests[test]();
-          passes++;
-        } catch (e) {
-          if (e === AssertionError) {
-            fails++;
-          } else {
-            errors++;
+  (function () {
+    var AssertionError = {};
+    var tests = {};
+    return {
+      test: function (name, fn) {
+        tests['test '+name] = fn;
+      },
+      ok: function (value, name) {
+        if (!value) {
+          print("    FAIL: "+name);
+          throw AssertionError;
+        }
+      },
+      export_tests: function () {
+        print("+ Running");
+        var passes = 0, fails = 0, errors = 0;
+        for (var test in tests) {
+          print("  + Running test "+test);
+          try {
+            tests[test]();
+            passes++;
+          } catch (e) {
+            if (e === AssertionError) {
+              fails++;
+            } else {
+              errors++;
+            }
           }
         }
+        print("Passes: "+passes+", Fails: "+fails+", Errors: "+errors);
+        tests = {};
       }
-      print("Passes: "+passes+", Fails: "+fails+", Errors: "+errors);
-      tests = {};
-    }
-  };
-  
-  exports;
+    };
+  })();
 }
