@@ -21,7 +21,6 @@ if (typeof(require) !== 'undefined') {
       }
     };
   }
-  
 } else if (typeof(load) !== 'undefined') {
   // jsc
 }
