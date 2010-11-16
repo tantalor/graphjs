@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 if (typeof(require) !== 'undefined') {
   try {
     var narwhal = require('narwhal');

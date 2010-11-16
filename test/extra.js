@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 if (typeof(require) !== 'undefined')
 {
   var assert = require("assert");
