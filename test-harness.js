@@ -19,6 +19,7 @@ if (typeof(require) !== 'undefined') {
     var exports = {};
     
     exports.run = function (filename) {
+      if (!filename.match("\.js$")) filename += ".js";
       load(filename);
       return exports;
     };
