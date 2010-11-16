@@ -61,7 +61,8 @@ if (typeof(require) !== 'undefined') {
           }
         }
       }
-      print("Passes: "+passes+", Fails: "+fails+", Errors: "+errors)
+      print("Passes: "+passes+", Fails: "+fails+", Errors: "+errors);
+      tests = {};
     };
   }
 } else if (typeof(load) !== 'undefined') {
@@ -94,7 +95,8 @@ if (typeof(require) !== 'undefined') {
           }
         }
       }
-      print("Passes: "+passes+", Fails: "+fails+", Errors: "+errors)
+      print("Passes: "+passes+", Fails: "+fails+", Errors: "+errors);
+      tests = {};
     }
   };
   
