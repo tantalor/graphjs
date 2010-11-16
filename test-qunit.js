@@ -7,7 +7,6 @@ if (typeof(require) !== 'undefined') {
     var narwhal = require('narwhal');
   } catch (e) {}
   
-  
   if (narwhal) {
     var tests = {};
     exports.QUnit = {
@@ -23,7 +22,7 @@ if (typeof(require) !== 'undefined') {
         }
       }
     };
-  };  
+  }
   
 } else if (typeof(load) !== 'undefined') {
   // jsc
