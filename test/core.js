@@ -1,7 +1,7 @@
-if (require) {
+if (typeof(require) !== 'undefined') {
   var QUnit = require('../test-qunit').QUnit;
   var Graph = require("../lib/graph_extras").Graph;
-} else if (load) {
+} else if (typeof(load) !== 'undefined') {
   var QUnit = load('test-qunit.js');
 }
 
