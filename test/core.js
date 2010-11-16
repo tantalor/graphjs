@@ -1,7 +1,9 @@
 if (typeof(require) !== 'undefined') {
+  // commonjs
   var QUnit = require('../test-qunit');
   var Graph = require("../lib/graph_extras").Graph;
 } else if (typeof(load) !== 'undefined') {
+  // jsc
   var QUnit = load('test-qunit.js');
   var Graph = load("lib/graph.js");
 }

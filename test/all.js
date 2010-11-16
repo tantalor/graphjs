@@ -1,5 +1,5 @@
 if (typeof(require) !== 'undefined') {
-  // common
+  // commonjs
   var Harness = require('../test-harness');
   Harness.run('./test/core');
 } else if (typeof(load) !== 'undefined') {
