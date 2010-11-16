@@ -231,5 +231,5 @@ with (QUnit)
   });
 }
 
-if (QUnit.export_tests)
-  QUnit.export_tests(typeof(exports) !== 'undefined' ? exports : undefined);
+if (QUnit.export_tests) QUnit.export_tests(exports);
+if (QUnit.run_tests)    QUnit.run_tests();

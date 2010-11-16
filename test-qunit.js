@@ -46,7 +46,7 @@ if (typeof(require) !== 'undefined') {
         throw e;
       }
     };
-    exports.export_tests = function (local_exports) {
+    exports.run_tests = function () {
       print("+ Running");
       var passes = 0, fails = 0, errors = 0;
       for (var test in tests) {
@@ -81,7 +81,7 @@ if (typeof(require) !== 'undefined') {
           throw AssertionError;
         }
       },
-      export_tests: function () {
+      run_tests: function () {
         print("+ Running");
         var passes = 0, fails = 0, errors = 0;
         for (var test in tests) {
