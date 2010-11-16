@@ -14,4 +14,11 @@ if (typeof(require) !== 'undefined') {
   }
 } else if (typeof(load) !== 'undefined') {
   // jsc
+  var exports = {
+    run: function (filename) {
+      load(filename);
+    }
+  };
+  
+  exports;
 }

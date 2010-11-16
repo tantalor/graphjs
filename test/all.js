@@ -4,6 +4,6 @@ if (typeof(require) !== 'undefined') {
   Harness.run('./test/core');
 } else if (typeof(load) !== 'undefined') {
   // jsc
-  load('test/core.js');
-  load('test/extra.js');
+  var Harness = load('test-harness.js');
+  Harness.run('test/core.js');
 }
