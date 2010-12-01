@@ -5,7 +5,7 @@ if (typeof(require) !== 'undefined') {
 } else if (typeof(load) !== 'undefined') {
   // jsc
   var QUnit = load('test-qunit.js');
-  var Graph = load("lib/graph_extras.js");
+  var Graph = load("lib/graph_extras.js").Graph;
 }
 
 with (QUnit)
