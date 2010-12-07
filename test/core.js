@@ -1,69 +1,13 @@
 #!/usr/bin/env node
 
-if (typeof(require) !== 'undefined')
-{
-  var assert = require("assert");
-  
-  if (typeof(print) === 'undefined') {
-    // node
-    var sys = require('sys');
-    var print = function (s) {
-      sys.print(s+"\n");
-    }
-  }
-  
-  try {
-    var narwhal = require('narwhal');
-  } catch (ex) {}
-  
-  if (narwhal) {
-    var QUnit = {
-      test: function (name, fn) {
-        exports['test '+name] = fn;
-      },
-      ok: function (value, name) {
-        assert.ok(value, name);
-      }
-    };
-  } else {
-    // node, ringo
-    var QUnit = {
-      test: function (name, fn) {
-        print(" + Running test "+name);
-        fn();
-      },
-      ok: function (value, name) {
-        assert.ok(value, name);
-      }
-    };
-  }
-  
-  var Graph = require("../lib/graph").Graph;
+if (typeof(require) !== 'undefined') {
+  // commonjs
+  var QUnit = require('../test-qunit');
+  var Graph = require("../lib/graph_extras").Graph;
 } else if (typeof(load) !== 'undefined') {
   // jsc
-  
-  var AssertionError = function (message)
-  {
-    this.message = message;
-    print(this);
-  }
-  
-  AssertionError.prototype.toString = function ()
-  {
-    return "AssertionError: "+this.message;
-  }
-  
-  var QUnit = {
-    test: function (name, fn) {
-      print(" + Running test "+name);
-      fn();
-    },
-    ok: function (value, name) {
-      if (!value) throw new AssertionError(name);
-    }
-  };
-  
-  var Graph = load("lib/graph.js");
+  var QUnit = load('test-qunit.js');
+  var Graph = load("lib/graph.js").Graph;
 }
 
 with (QUnit)
@@ -480,3 +424,6 @@ with (QUnit)
       "K(3) is now K(2).")
   });
 }
+
+if (QUnit.export_tests) QUnit.export_tests(exports);
+if (QUnit.run_tests)    QUnit.run_tests();
