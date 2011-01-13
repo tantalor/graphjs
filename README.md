@@ -4,6 +4,8 @@
 
 Your graphs may have self edges, weighted edges, and directed edges, but not multiedges.
 
+GraphJS uses [QUnit](http://docs.jquery.com/Qunit) and [steel](https://github.com/tantalor/steel) for testing.
+
 ## Usage
 
 ### Creating, reading, updating, and deleting edges (CRUD)
