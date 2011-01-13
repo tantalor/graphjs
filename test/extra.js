@@ -1,10 +1,10 @@
 if (typeof(require) !== 'undefined') {
   // commonjs
-  var QUnit = require('../test-qunit');
+  var QUnit = require('../steel');
   var Graph = require("../lib/graph_extras").Graph;
 } else if (typeof(load) !== 'undefined') {
   // jsc
-  var QUnit = load('test-qunit.js');
+  var QUnit = load('steel.js');
   var Graph = load("lib/graph_extras.js").Graph;
 }
 
@@ -231,5 +231,4 @@ with (QUnit)
   });
 }
 
-if (QUnit.export_tests) QUnit.export_tests(exports);
-if (QUnit.run_tests)    QUnit.run_tests();
+if (QUnit.run) QUnit.run(typeof exports !== 'undefined' ? exports : undefined);

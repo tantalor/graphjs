@@ -1,9 +1,11 @@
 #!/usr/bin/env node
 
-(
-  typeof(require) !== 'undefined' ? 
-    require('../test-harness') :
-    load('test-harness.js')
-)
-  .run('./test/core')
-  .run('./test/extra');
+if( typeof(require) !== 'undefined') {
+  require('../steel')
+    .add('./test/core')
+    .add('./test/extra');
+} else {
+  load('steel.js')
+    .add('./test/core')
+    .add('./test/extra');
+}
