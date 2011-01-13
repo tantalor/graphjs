@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 if (typeof(require) !== 'undefined') {
   // commonjs
   var QUnit = require('../test-qunit');
