@@ -1,7 +1,7 @@
 if (typeof(require) !== 'undefined') {
   // commonjs
   var QUnit = require('../steel');
-  var Graph = require("../lib/graph_extras").Graph;
+  var Graph = require("../lib/graph").Graph;
 } else if (typeof(load) !== 'undefined') {
   // jsc
   var QUnit = load('steel.js');
