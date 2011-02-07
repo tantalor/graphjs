@@ -3,7 +3,10 @@
   "description": "library for manipulating directed and undirected graphs",
   "version": "0.0.0",
   "homepage": "http://github.johntantalo.com/graphjs/",
-  "repository": "git://github.com/tantalor/graphjs.git",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/tantalor/graphjs.git"
+  },
   "author": "John Tantalo <john.tantalo@gmail.com> (http://johntantalo.com)",
   "main": "./lib/graph",
   "directories": {
