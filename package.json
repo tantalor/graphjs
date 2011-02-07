@@ -1,7 +1,7 @@
 {
   "name": "graph",
   "description": "library for manipulating directed and undirected graphs",
-  "version": "0.0.0",
+  "version": "0.0.2",
   "homepage": "http://github.johntantalo.com/graphjs/",
   "repository": {
     "type": "git",
@@ -12,7 +12,11 @@
   "directories": {
     "lib": "./lib"
   },
+  "test": "./test/all.js",
   "engines": {
     "node": "*",
+    "jsc": "*",
+    "narwhal": "*",
+    "ringo": "*"
   }
 }
