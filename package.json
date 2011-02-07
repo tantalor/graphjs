@@ -5,9 +5,9 @@
   "homepage": "http://github.johntantalo.com/graphjs/",
   "repository": "git://github.com/tantalor/graphjs.git",
   "author": "John Tantalo <john.tantalo@gmail.com> (http://johntantalo.com)",
-  "main": "graph",
+  "main": "./lib/graph",
   "directories": {
-    "lib": "lib"
+    "lib": "./lib"
   },
   "engines": {
     "node": "*",
