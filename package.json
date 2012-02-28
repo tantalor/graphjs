@@ -12,7 +12,7 @@
   "directories": {
     "lib": "./lib"
   },
-  "test": "./test/all.js",
+  "scripts": {"test": "test/all.js"},
   "engines": {
     "node": "*",
     "jsc": "*",
