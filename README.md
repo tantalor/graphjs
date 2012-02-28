@@ -1,5 +1,7 @@
 # GraphJS
 
+[![Build Status](https://secure.travis-ci.org/tantalor/graphjs.png)](http://travis-ci.org/tantalor/graphjs)
+
 **GraphJS** is a simple Javascript library for manipulating directed and undirected [graphs](http://en.wikipedia.org/wiki/Graph_\(mathematics\)).
 
 Your graphs may have self edges, weighted edges, and directed edges, but not multiedges.
