@@ -12,6 +12,9 @@
   "directories": {
     "lib": "./lib"
   },
+  "devDependencies": {
+    "steel": "0.0.1"
+  },
   "scripts": {"test": "test/all.js"},
   "engines": {
     "node": "*",

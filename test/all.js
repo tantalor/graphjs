@@ -1,11 +1,14 @@
 #!/usr/bin/env node
 
+var path = require('path');
+var tests = [
+  path.resolve('test/core'),
+  path.resolve('test/extra')
+];
+
 if( typeof(require) !== 'undefined') {
-  require('../steel')
-    .suite([
-      '../../../test/core',
-      '../../../test/extra'
-    ])
+  require('steel')
+    .suite(tests)
 } else {
   load('steel.js')
     .add('./test/core')

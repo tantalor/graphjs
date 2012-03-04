@@ -1,6 +1,6 @@
 if (typeof(require) !== 'undefined') {
   // commonjs
-  var QUnit = require('../steel');
+  var QUnit = require('steel');
   var Graph = require("../lib/graph").Graph;
 } else if (typeof(load) !== 'undefined') {
   // jsc
