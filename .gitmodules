@@ -1,6 +1,3 @@
 [submodule "vendor/qunit"]
 	path = vendor/qunit
 	url = git://github.com/jquery/qunit.git
-[submodule "vendor/steel"]
-	path = vendor/steel
-	url = git://github.com/tantalor/steel.git
