@@ -90,85 +90,12 @@ A directed self edge is indistinguishable from an undirected self edge.
 
 ## Tests
 
-GraphJS is packaged with tests for several different environments.
+GraphJS is packaged with `nodeunit` tests.
 
-### Browser (QUnit)
+The easiest way to run the tests is with `npm test`.
 
-_see [QUnit](http://docs.jquery.com/Qunit)_
+    $ npm test
+    ...
+    OK: 173 assertions (23ms)
 
-Load the `graphjs/test/all.html` page in your favorite browser.
-
-    Tests completed in 88 milliseconds.
-    0 tests of 160 failed.
-
-### Narwhal
-
-_see [Narwhal](http://narwhaljs.org/)_
-
-You can run the separate tests with `narwhal`.
-
-    $ narwhal -m test test/core.js
-    + Running test/core.js
-    Passes: 24, Fails: 0, Errors: 0
-
-Or all tests.
-
-    $ narwhal test/all.js
-    + Running
-    Passes: 24, Fails: 0, Errors: 0
-    + Running
-    Passes: 14, Fails: 0, Errors: 0
-
-### Node
-
-_see [Node](http://nodejs.org/)_
-
-You can run the individual tests with `node`.
-
-    $ node test/core.js
-    + Running
-    Passes: 24, Fails: 0, Errors: 0
-
-Or all tests.
-
-    $ node test/all.js
-    + Running
-    Passes: 24, Fails: 0, Errors: 0
-    + Running
-    Passes: 14, Fails: 0, Errors: 0
-
-### JavaScriptCore
-
-_see [JavaScriptCore](http://webkit.org/projects/javascript/)_
-
-You can run the separate tests with `jsc`.
-
-    $ jsc test/core.js
-    + Running
-    Passes: 24, Fails: 0, Errors: 0
-
-Or all tests.
-
-    $ jsc test/all.js
-    + Running
-    Passes: 24, Fails: 0, Errors: 0
-    + Running
-    Passes: 14, Fails: 0, Errors: 0
-
-### RingoJS
-
-_see [RingoJS](http://ringojs.org/)_
-
-You can run the separate tests with `ringo`.
-
-    $ ringo test/core.js
-    + Running
-    Passes: 24, Fails: 0, Errors: 0
-
-Or all the tests.
-
-    $ ringo test/all.js
-    + Running
-    Passes: 24, Fails: 0, Errors: 0
-    + Running
-    Passes: 14, Fails: 0, Errors: 0
+You can also test your browser by loading the `test.html` page.
