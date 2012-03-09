@@ -15,7 +15,9 @@
   "devDependencies": {
     "nodeunit": "latest"
   },
-  "scripts": {"test": "test/all.js"},
+  "scripts": {
+    "test": "./node_modules/.bin/nodeunit test"
+  },
   "engines": {
     "node": "*",
     "jsc": "*",
