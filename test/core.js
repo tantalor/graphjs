@@ -1,205 +1,216 @@
 if (typeof(require) !== 'undefined') {
   // commonjs
-  var QUnit = require('steel');
   var Graph = require("../lib/graph").Graph;
 } else if (typeof(load) !== 'undefined') {
   // jsc
-  var QUnit = load('steel.js');
   var Graph = load("lib/graph.js").Graph;
 }
 
-with (QUnit)
+this.core_suite =
 {
-  test('Graph exists', function ()
+  'Graph exists': function (test)
   {
-    ok(Graph,
+    test.ok(Graph,
       "I can find the Graph class.");
-  });
+    test.done();
+  },
 
-  test('Null get', function ()
+  'Null get': function (test)
   {
     var g = new Graph();
-    ok(g.get(1, 2) === undefined,
+    test.ok(g.get(1, 2) === undefined,
       "Get for unknown edge returns undef.");
-    ok(g.has(1, 2) === false,
+    test.ok(g.has(1, 2) === false,
       "Has for unknown edge returns false.");
-  });
+    test.done();
+  },
 
-  test('Bad delete', function ()
+  'Bad delete': function (test)
   {
     var g = new Graph();
     g.del(1, 2);
-    ok(g.degree(1) === 0,
+    test.ok(g.degree(1) === 0,
       "Degree of one vertex is 0.");
-    ok(g.degree(2) === 0,
+    test.ok(g.degree(2) === 0,
       "Degree of other vertex is 0.");
-    ok(g.size() === 0,
+    test.ok(g.size() === 0,
       "Size is 0.");
-  });
+    test.done();
+  },
 
-  test('Simple get', function ()
+  'Simple get': function (test)
   {
     var g = new Graph();
-    ok(g.set(1, 2, 3) === 3,
+    test.ok(g.set(1, 2, 3) === 3,
       "Set returns edge weight.");
-    ok(g.get(1, 2) === 3,
+    test.ok(g.get(1, 2) === 3,
       "Get returns edge weight.");
-  });
+    test.done();
+  },
 
-  test('Set and get', function ()
+  'Set and get': function (test)
   {
     var g = new Graph();
     g.set(1, 2, 3);
-    ok(g.get(1, 2) === 3,
+    test.ok(g.get(1, 2) === 3,
       "Get with original order returns weight.");
-    ok(g.get(2, 1) === 3,
+    test.ok(g.get(2, 1) === 3,
       "Get with reveresed order returns weight.");
-    ok(g.order() === 2,
+    test.ok(g.order() === 2,
       "Number of vertices is 2.");
-    ok(g.degree(1) === 1,
+    test.ok(g.degree(1) === 1,
       "Degree of one vertex is 1.");
-    ok(g.degree(2) === 1,
+    test.ok(g.degree(2) === 1,
       "Degree of other vertex is 1.");
-    ok(g.size() === 1,
+    test.ok(g.size() === 1,
       "Size is 1.");
-  });
+    test.done();
+  },
 
-  test('Set and delete', function ()
+  'Set and delete': function (test)
   {
     var g = new Graph();
-    ok(g.set(1, 2),
+    test.ok(g.set(1, 2),
       "Added edge.")
-    ok(g.del(1, 2) === false,
+    test.ok(g.del(1, 2) === false,
       "Deleted edge.")
-    ok(!g.has(1, 2),
+    test.ok(!g.has(1, 2),
       "Deleted edge doesn't exist.");
-    ok(!g.has(2, 1),
+    test.ok(!g.has(2, 1),
       "Reverse of edge also doesn't exist.");
-    ok(g.order() === 2,
+    test.ok(g.order() === 2,
       "Number of vertices is 2.");
-    ok(g.degree(1) === 0,
+    test.ok(g.degree(1) === 0,
       "Degree of one vertex is 0.");
-    ok(g.degree(2) === 0,
+    test.ok(g.degree(2) === 0,
       "Degree of other vertex is 0.");
-    ok(g.size() === 0,
+    test.ok(g.size() === 0,
       "Size is 0.");
-  });
+    test.done();
+  },
 
-  test('Set and reverse set', function ()
+  'Set and reverse set': function (test)
   {
     var g = new Graph();
     g.set(1, 2, 3);
     g.set(2, 1, 4);
-    ok(g.get(1, 2) === 4,
+    test.ok(g.get(1, 2) === 4,
       "Get with original order returns new weight.");
-    ok(g.get(2, 1) === 4,
+    test.ok(g.get(2, 1) === 4,
       "Get with reversed order returns new weight.");
-    ok(g.order() === 2,
+    test.ok(g.order() === 2,
       "Number of vertices is 2.");
-    ok(g.degree(1) === 1,
+    test.ok(g.degree(1) === 1,
       "Degree of one vertex is 1.");
-    ok(g.degree(2) === 1,
+    test.ok(g.degree(2) === 1,
       "Degree of other vertex is 1.");
-    ok(g.size() === 1,
+    test.ok(g.size() === 1,
       "Size is 1.");
-  });
+    test.done();
+  },
 
-  test('Set and reverse delete', function ()
+  'Set and reverse delete': function (test)
   {
     var g = new Graph();
-    ok(g.set(1, 2),
+    test.ok(g.set(1, 2),
       "Added edge.")
-    ok(g.del(2, 1) === false,
+    test.ok(g.del(2, 1) === false,
       "Deleted edge.");
-    ok(!g.has(1, 2),
+    test.ok(!g.has(1, 2),
       "Deleted edge doesn't exist.");
-    ok(!g.has(2, 1),
+    test.ok(!g.has(2, 1),
       "Reverse of edge also doesn't exist.");
-    ok(g.order() === 2,
+    test.ok(g.order() === 2,
       "Number of vertices is 2.");
-    ok(g.degree(1) === 0,
+    test.ok(g.degree(1) === 0,
       "Degree of one vertex is 0.");
-    ok(g.degree(2) === 0,
+    test.ok(g.degree(2) === 0,
       "Degree of other vertex is 0.");
-    ok(g.size() === 0,
+    test.ok(g.size() === 0,
       "Size is 0.");
-  });
+    test.done();
+  },
 
-  test('Self edge', function ()
+  'Self edge': function (test)
   {
     var g = new Graph();
-    ok(g.set(1, 1, 2) == 2,
+    test.ok(g.set(1, 1, 2) == 2,
       "Set self edge returns weight.");
-    ok(g.get(1, 1) === 2,
+    test.ok(g.get(1, 1) === 2,
       "Get self edge returns weight.");
-    ok(g.order() === 1,
+    test.ok(g.order() === 1,
       "Number of vertices is 1.");
-    ok(g.degree(1) === 1,
+    test.ok(g.degree(1) === 1,
       "Degree of vertex is 1.");
-    ok(g.size() === 1,
+    test.ok(g.size() === 1,
       "Size is 1.");
-  });
+    test.done();
+  },
 
-  test('Simple constructor', function ()
+  'Simple constructor': function (test)
   {
     var g = new Graph({pirate: ['ninja', 'robot']});
-    ok(g.get('pirate', 'ninja') && g.get('pirate', 'robot'),
+    test.ok(g.get('pirate', 'ninja') && g.get('pirate', 'robot'),
       "All edges exist.");
-    ok(g.order() === 3,
+    test.ok(g.order() === 3,
       "Number of vertices is 3.");
-    ok(g.degree('pirate') === 2,
+    test.ok(g.degree('pirate') === 2,
       "Degree of 'pirate' vertex is 2.");
-    ok(g.degree('ninja') === 1,
+    test.ok(g.degree('ninja') === 1,
       "Degree of 'ninja' vertex is 1.");
-    ok(g.degree('robot') === 1,
+    test.ok(g.degree('robot') === 1,
       "Degree of 'robot' vertex is 1.");
-    ok(g.size() === 2,
+    test.ok(g.size() === 2,
       "Size is 2.");
-  });
+    test.done();
+  },
 
-  test('Constructor with weights', function ()
+  'Constructor with weights': function (test)
   {
     var g = new Graph({pirate: {ninja: 'robot'}});
-    ok(g.get('pirate', 'ninja') === 'robot',
+    test.ok(g.get('pirate', 'ninja') === 'robot',
       "Get in original order has weight 'robot'.");
-    ok(g.get('ninja', 'pirate') === 'robot',
+    test.ok(g.get('ninja', 'pirate') === 'robot',
       "Get in reversed order has weight 'robot'.");
-    ok(g.order() === 2,
+    test.ok(g.order() === 2,
       "Number of vertices is 2.");
-    ok(g.degree('pirate') === 1,
+    test.ok(g.degree('pirate') === 1,
       "Degree of 'pirate' vertex is 1.");
-    ok(g.degree('ninja') === 1,
+    test.ok(g.degree('ninja') === 1,
       "Degree of 'ninja' vertex is 1.");
-    ok(g.size() === 1,
+    test.ok(g.size() === 1,
       "Size is 1.");
-  });
+    test.done();
+  },
 
-  test('Multiget', function ()
+  'Multiget': function (test)
   {
     var g = new Graph();
-    ok(g.set(1, 2) && g.set(2, 3) && g.set(3, 1),
+    test.ok(g.set(1, 2) && g.set(2, 3) && g.set(3, 1),
       "Set all edges.");
-    ok(g.get(2, 1) && g.get(3, 2) && g.get(1, 3),
+    test.ok(g.get(2, 1) && g.get(3, 2) && g.get(1, 3),
       "All edges exist.");
-    ok(g.degree(1) == 2 && g.degree(2) == 2 && g.degree(3) == 2,
+    test.ok(g.degree(1) == 2 && g.degree(2) == 2 && g.degree(3) == 2,
       "Degree of all vertices is 2.");
-    ok(g.order() === 3,
+    test.ok(g.order() === 3,
       "Number of vertices is 3.");
-    ok(g.size() === 3,
+    test.ok(g.size() === 3,
       "Size is 3.");
-  });
+    test.done();
+  },
 
-  test('Adjacency', function ()
+  'Adjacency': function (test)
   {
     var g = new Graph();
     g.set(1, 2);
-    ok(1 in g.adj(2),
+    test.ok(1 in g.adj(2),
       "Vertex 1 is adjacent to vertex 2.");
-    ok(2 in g.adj(1),
+    test.ok(2 in g.adj(1),
       "Vertex 2 is adjacent to vertex 1.");
-  });
+    test.done();
+  },
   
-  test('Depth-first search', function ()
+  'Depth-first search': function (test)
   {
     var g = new Graph({
       1: [2, 3],
@@ -216,16 +227,17 @@ with (QUnit)
       };
     }
     visit(1);
-    ok(visited[1], "Visited vertex 1.");
-    ok(visited[2], "Visited vertex 2.");
-    ok(visited[3], "Visited vertex 3.");
-    ok(visited[4], "Visited vertex 4.");
-    ok(visited[5], "Visited vertex 5.");
-    ok(visited[6], "Visited vertex 6.");
-    ok(visited[7], "Visited vertex 7.");
-  });
+    test.ok(visited[1], "Visited vertex 1.");
+    test.ok(visited[2], "Visited vertex 2.");
+    test.ok(visited[3], "Visited vertex 3.");
+    test.ok(visited[4], "Visited vertex 4.");
+    test.ok(visited[5], "Visited vertex 5.");
+    test.ok(visited[6], "Visited vertex 6.");
+    test.ok(visited[7], "Visited vertex 7.");
+    test.done();
+  },
   
-  test('Breadth-first search', function ()
+  'Breadth-first search': function (test)
   {
     var g = new Graph({
       1: [2, 3],
@@ -243,164 +255,173 @@ with (QUnit)
         fringe.push(u);
       };
     }
-    ok(visited[1], "Visited vertex 1.");
-    ok(visited[2], "Visited vertex 2.");
-    ok(visited[3], "Visited vertex 3.");
-    ok(visited[4], "Visited vertex 4.");
-    ok(visited[5], "Visited vertex 5.");
-    ok(visited[6], "Visited vertex 6.");
-    ok(visited[7], "Visited vertex 7.");
-  });
+    test.ok(visited[1], "Visited vertex 1.");
+    test.ok(visited[2], "Visited vertex 2.");
+    test.ok(visited[3], "Visited vertex 3.");
+    test.ok(visited[4], "Visited vertex 4.");
+    test.ok(visited[5], "Visited vertex 5.");
+    test.ok(visited[6], "Visited vertex 6.");
+    test.ok(visited[7], "Visited vertex 7.");
+    test.done();
+  },
   
-  test('Simple copy', function ()
+  'Simple copy': function (test)
   {
     var g = new Graph({
       1: [2, 3],
       2: [3],
     });
     var h = g.copy();
-    ok(g.get(2, 3),
+    test.ok(g.get(2, 3),
       "Original graph has edge.")
-    ok(g.del(2, 3) === false,
+    test.ok(g.del(2, 3) === false,
       "Deleted edge in original graph.");
-    ok(!g.has(2, 3),
+    test.ok(!g.has(2, 3),
       "Original graph does not have deleted edge.")
-    ok(h.get(2, 3),
+    test.ok(h.get(2, 3),
       "Copied graph has deleted edge.");
-    ok(g.size() == 2,
+    test.ok(g.size() == 2,
       "Original graph has size 2.");
-    ok(h.size() == 3,
+    test.ok(h.size() == 3,
       "Copied graph has size 3.");
-    ok(g.degree(2) == 1,
+    test.ok(g.degree(2) == 1,
       "Degree of vertex 1 in original is 1.")
-    ok(h.degree(2) == 2,
+    test.ok(h.degree(2) == 2,
       "Degree of vertex 1 in copy is 2.")
-  });
+    test.done();
+  },
   
-  test('Copy with weights', function ()
+  'Copy with weights': function (test)
   {
     var g = new Graph({
       1: {2: 3},
     });
     var h = g.copy();
-    ok(g.get(1, 2) === 3,
+    test.ok(g.get(1, 2) === 3,
       "Original graph has edge with weight.")
-    ok(g.del(1, 2) === false,
+    test.ok(g.del(1, 2) === false,
       "Deleted edge in original graph.");
-    ok(!g.has(1, 2),
+    test.ok(!g.has(1, 2),
       "Original graph does not have deleted edge.")
-    ok(h.get(1, 2) == 3,
+    test.ok(h.get(1, 2) == 3,
       "Copied graph has deleted edge with weight.");
-  });
+    test.done();
+  },
   
-  test('Repeated vertices', function ()
+  'Repeated vertices': function (test)
   {
     var g = new Graph();
     g.set('a', 'b');
     g.del('a', 'b');
     g.set('a', 'b');
     
-    ok(g.order() === 2,
+    test.ok(g.order() === 2,
       "Graph has 2 vertices.");
-  });
+    test.done();
+  },
   
-  test('Add falsey weight', function ()
+  'Add falsey weight': function (test)
   {
     var g = new Graph();
     g.set('a', 'b', 0);
     
-    ok(g.size() === 1,
+    test.ok(g.size() === 1,
       "Graph has 1 edge.");
-  });
+    test.done();
+  },
   
-  test('Remove falsey weight', function ()
+  'Remove falsey weight': function (test)
   {
     var g = new Graph();
     g.set('a', 'b', 0);
     g.del('a', 'b');
     
-    ok(g.size() === 0,
+    test.ok(g.size() === 0,
       "Graph has 0 edges.");
-  });
+    test.done();
+  },
   
-  test('Add directed edges', function ()
+  'Add directed edges': function (test)
   {
     var g = new Graph();
     g.dir(1, 2);
     
-    ok(g.order() === 2,
+    test.ok(g.order() === 2,
       "Order is 2.");
     
-    ok(g.size() === 1,
+    test.ok(g.size() === 1,
       "Size is 1.");
     
-    ok(g.has(1, 2),
+    test.ok(g.has(1, 2),
       "1 ~ 2");
     
-    ok(!g.has(2, 1),
+    test.ok(!g.has(2, 1),
       "2 !~ 1");
     
-    ok(g.degree(1) === 1,
+    test.ok(g.degree(1) === 1,
       "Out degrees of 1 is 1.");
     
-    ok(g.degree(2) === 0,
+    test.ok(g.degree(2) === 0,
       "Out degrees of 2 is 0.");
     
-    ok(g.indegree(1) === 0,
+    test.ok(g.indegree(1) === 0,
       "Out degrees of 1 is 0.");
     
-    ok(g.indegree(2) === 1,
+    test.ok(g.indegree(2) === 1,
       "Out degrees of 2 is 1.");
-  });
+    test.done();
+  },
   
-  test('Remove directed edges', function ()
+  'Remove directed edges': function (test)
   {
     var g = new Graph();
     g.set(1, 2);
     g.deldir(2, 1);
     
-    ok(g.order() === 2,
+    test.ok(g.order() === 2,
       "Order is 2.");
     
-    ok(g.size() === 1,
+    test.ok(g.size() === 1,
       "Size is 1.");
     
-    ok(g.has(1, 2),
+    test.ok(g.has(1, 2),
       "1 ~ 2");
     
-    ok(!g.has(2, 1),
+    test.ok(!g.has(2, 1),
       "2 !~ 1");
     
-    ok(g.degree(1) === 1,
+    test.ok(g.degree(1) === 1,
       "Out degrees of 1 is 1.");
     
-    ok(g.degree(2) === 0,
+    test.ok(g.degree(2) === 0,
       "Out degrees of 2 is 0.");
     
-    ok(g.indegree(1) === 0,
+    test.ok(g.indegree(1) === 0,
       "Out degrees of 1 is 0.");
     
-    ok(g.indegree(2) === 1,
+    test.ok(g.indegree(2) === 1,
       "Out degrees of 2 is 1.");
-  });
+    test.done();
+  },
   
-  test('Double directed edges', function ()
+  'Double directed edges': function (test)
   {
     var g = new Graph();
     g.dir(1, 2);
     g.dir(2, 1);
     
-    ok(g.order() === 2,
+    test.ok(g.order() === 2,
       "Order is 2.");
     
-    ok(g.size() === 1,
+    test.ok(g.size() === 1,
       "Size is 1.");
     
-    ok(g.has(1, 2) && g.has(2, 1),
+    test.ok(g.has(1, 2) && g.has(2, 1),
       "1 ~ 2 and 2 ~ 1");
-  });
+    test.done();
+  },
   
-  test('Drop vertex', function ()
+  'Drop vertex': function (test)
   {
     // var g = Graph.k(4, ['a', 'b', 'c', 'd']);
     var g = new Graph({
@@ -408,19 +429,18 @@ with (QUnit)
       b: ['c', 'd'],
       c: ['d'],
     });
-    ok(!g.drop('z'),
+    test.ok(!g.drop('z'),
       "Can't drop a vertex that isn't in the graph.")
-    ok(g.size() === 6 && g.order() === 4,
+    test.ok(g.size() === 6 && g.order() === 4,
       "Graph is K(4).");
-    ok(g.drop('a'),
+    test.ok(g.drop('a'),
       "Dropped a vertex.");
-    ok(g.size() === 3 && g.order() === 3,
+    test.ok(g.size() === 3 && g.order() === 3,
       "K(4) is now K(3).")
-    ok(g.del('b'),
+    test.ok(g.del('b'),
       "Dropped another vertex.");
-    ok(g.size() === 1 && g.order() === 2,
-      "K(3) is now K(2).")
-  });
-}
-
-if (QUnit.run) QUnit.run(typeof exports !== 'undefined' ? exports : undefined);
+    test.ok(g.size() === 1 && g.order() === 2,
+      "K(3) is now K(2).");
+    test.done();
+  }
+};
