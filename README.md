@@ -33,6 +33,10 @@ Your graphs may have self edges, weighted edges, and directed edges, but not mul
       b: {c: 3},
     }); # path with vertices a, b, c and weights (a, b) = 2, (b, c) = 3
 
+#### With directed edges
+
+    new Graph({a: ['-b', '-c']}); # Directed edges to b and c.
+
 ### Degree, size, order, and adjacency
 
     var g = new Graph({
@@ -58,6 +62,10 @@ Your graphs may have self edges, weighted edges, and directed edges, but not mul
     g.dir('a', 'b'); # a ~ b, but b !~ a
     g.has('a', 'b'); # true
     g.has('b', 'a'); # false
+    
+#### Alternative syntax
+
+    g.set('a', '-b'); # Same as g.dir('a', 'b');
 
 ### Deleting directed edges
 

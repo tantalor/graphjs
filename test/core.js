@@ -183,6 +183,34 @@ this.core_suite =
     test.done();
   },
 
+  'Constructor with directed edges': function (test)
+  {
+    var g = new Graph({'a': ['-b', '-c']});
+    test.ok(g.order() === 3,
+      "Number of vertices is 3.");
+    test.ok(g.size() === 2,
+      "Number of edges is 2.");
+    test.ok(g.degree('a') === 2,
+      "Out degree of 'a' is 1.");
+    test.ok(g.degree('b') === 0,
+      "Out degree of 'b' is 0.");
+    test.ok(g.degree('c') === 0,
+      "Out degree of 'c' is 0.");
+    test.ok(g.indegree('a') === 0,
+      "In degree of 'a' is 0.");
+    test.ok(g.indegree('b') === 1,
+      "In degree of 'b' is 1.");
+    test.ok(g.indegree('c') === 1,
+      "In degree of 'c' is 1.");
+    test.ok(g.has('a', 'b'));
+    test.ok(g.has('a', 'c'));
+    test.ok(!g.has('b', 'a'));
+    test.ok(!g.has('c', 'a'));
+    test.ok(!g.has('c', 'b'));
+    test.ok(!g.has('b', 'c'));
+    test.done();
+  },
+
   'Multiget': function (test)
   {
     var g = new Graph();
