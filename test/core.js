@@ -230,6 +230,8 @@ this.core_suite =
   'Adjacency': function (test)
   {
     var g = new Graph();
+    test.ok(typeof g.adj(3) !== 'undefined',
+        "Should returns empty object when no adjacents.");
     g.set(1, 2);
     test.ok(1 in g.adj(2),
       "Vertex 1 is adjacent to vertex 2.");
