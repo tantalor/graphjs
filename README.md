@@ -25,7 +25,7 @@ Your graphs may have self edges, weighted edges, and directed edges, but not mul
 
     new Graph({
       a: ['b', 'c'],
-      c: ['d'],
+      c: ['b'],
     }); # triangle with vertices a, b, and c
     
     new Graph({
